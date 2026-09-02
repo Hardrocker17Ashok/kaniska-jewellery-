@@ -1,0 +1,448 @@
+.today-sales-page {
+  min-height: 100vh;
+  background: #0b0b0a;
+  color: #f2eee5;
+  font-family: inherit;
+}
+
+.sales-header {
+  min-height: 82px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sales-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sales-brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.sales-brand div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sales-brand span,
+.sales-title > div > span,
+.sales-filter-heading span,
+.today-bills-heading span {
+  color: #c5a05b;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.sales-brand strong {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sales-back,
+.sales-refresh,
+.sales-filter-heading button {
+  border: 1px solid rgba(197, 160, 91, 0.28);
+  background: transparent;
+  color: #d8c28f;
+  border-radius: 5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.sales-back {
+  padding: 11px 17px;
+  font-size: 13px;
+}
+
+.sales-content {
+  width: min(1400px, 90%);
+  margin: auto;
+  padding: 52px 0 70px;
+}
+
+.sales-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+
+.sales-title h1 {
+  margin: 9px 0 7px;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 500;
+}
+
+.sales-title p {
+  margin: 0;
+  color: #89847b;
+  font-size: 14px;
+}
+
+.sales-refresh {
+  padding: 11px 16px;
+  font-size: 12px;
+}
+
+.sales-refresh:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+
+/* STATS */
+
+.sales-stats {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.sales-stat {
+  min-height: 125px;
+  padding: 20px;
+  background: #11110f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 7px;
+}
+
+.sales-stat.primary {
+  border-color: rgba(197, 160, 91, 0.28);
+}
+
+.sales-stat span {
+  display: block;
+  color: #807b72;
+  font-size: 10px;
+  margin-bottom: 12px;
+}
+
+.sales-stat strong {
+  display: block;
+  color: #e7e0d1;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.sales-stat.primary strong {
+  color: #e2c27c;
+}
+
+.sales-stat small {
+  display: block;
+  margin-top: 8px;
+  color: #656159;
+  font-size: 10px;
+}
+
+
+/* FILTER */
+
+.sales-filter {
+  padding: 24px;
+  margin-bottom: 38px;
+  background: #11110f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 7px;
+}
+
+.sales-filter-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sales-filter-heading h2,
+.today-bills-heading h2 {
+  margin: 5px 0 0;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.sales-filter-heading button {
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.sales-filter-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 13px;
+}
+
+.sales-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #99938a;
+  font-size: 11px;
+}
+
+.sales-field input,
+.sales-field select {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background: #191917;
+  color: #e8e2d8;
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+}
+
+.sales-field input::placeholder {
+  color: #625e57;
+}
+
+.sales-field input:focus,
+.sales-field select:focus {
+  border-color: rgba(197, 160, 91, 0.5);
+}
+
+
+/* BILLS */
+
+.today-bills-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.today-bills-heading > strong {
+  color: #777169;
+  font-size: 12px;
+}
+
+.sales-bill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.sales-bill {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1.45fr 0.8fr 0.9fr 1.15fr;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  background: #11110f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+.sales-bill:hover {
+  border-color: rgba(197, 160, 91, 0.24);
+}
+
+.sales-bill span {
+  display: block;
+  margin-bottom: 7px;
+  color: #66625b;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sales-bill strong {
+  display: block;
+  color: #d9d4ca;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sales-bill small {
+  display: block;
+  margin-top: 5px;
+  color: #6e6961;
+  font-size: 10px;
+}
+
+.sales-bill-number strong {
+  color: #c8aa6e;
+}
+
+.sales-bill-total {
+  text-align: right;
+}
+
+.sales-bill-total strong {
+  color: #e4c67f;
+  font-size: 16px;
+}
+
+
+/* STATES */
+
+.sales-loading,
+.sales-empty {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  background: #11110f;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 7px;
+  text-align: center;
+}
+
+.sales-loading p,
+.sales-empty p {
+  margin: 0;
+  color: #747067;
+  font-size: 13px;
+}
+
+.sales-empty strong {
+  color: #d9d3c8;
+  font-size: 16px;
+}
+
+.sales-empty-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(197, 160, 91, 0.25);
+  border-radius: 50%;
+  color: #c5a05b;
+}
+
+.sales-loader {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(197, 160, 91, 0.18);
+  border-top-color: #c5a05b;
+  border-radius: 50%;
+  animation: salesSpin 0.8s linear infinite;
+}
+
+@keyframes salesSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* FOOTER */
+
+.sales-footer {
+  min-height: 80px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #666159;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.sales-footer b {
+  color: #a7874e;
+}
+
+.sales-footer small {
+  margin-left: 15px;
+  color: #504c46;
+  letter-spacing: 0;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .sales-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sales-filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sales-bill {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .sales-bill-total {
+    text-align: left;
+  }
+}
+
+@media (max-width: 700px) {
+  .sales-header {
+    padding: 0 18px;
+  }
+
+  .sales-content {
+    width: calc(100% - 32px);
+    padding-top: 35px;
+  }
+
+  .sales-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sales-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-filter {
+    padding: 18px;
+  }
+
+  .sales-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-bill {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sales-bill-total {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .sales-brand img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sales-brand strong {
+    font-size: 15px;
+  }
+
+  .sales-back {
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+
+  .sales-bill {
+    grid-template-columns: 1fr;
+  }
+
+  .sales-footer {
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+}
