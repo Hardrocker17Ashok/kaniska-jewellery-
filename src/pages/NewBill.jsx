@@ -19,12 +19,15 @@ function NewBill() {
   const [customerName, setCustomerName] = useState("");
   const [customerMobile, setCustomerMobile] = useState("");
 
+  // Current item being entered. Making, offer and GST are bill-level fields.
   const [metal, setMetal] = useState("");
   const [item, setItem] = useState("");
   const [carat, setCarat] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [weight, setWeight] = useState("");
   const [rate, setRate] = useState("");
+  const [items, setItems] = useState([]);
+
   const [making, setMaking] = useState("");
   const [offer, setOffer] = useState("");
 
@@ -32,37 +35,133 @@ function NewBill() {
   const [gstRate, setGstRate] = useState(3);
 
   const goldItems = [
-    "अंगूठी",
-    "चेन",
-    "कंगन",
-    "हार",
-    "कान की बाली",
-    "पेंडेंट",
-    "चूड़ी",
-    "नाक की पिन",
-  ];
+  "सोने की अंगूठी",
+  "सोने की चेन",
+  "सोने का कंगन",
+  "सोने का हार",
+  "सोने की कान की बाली",
+  "सोने का पेंडेंट",
+  "सोने की चूड़ी",
+  "सोने की नाक की पिन",
+
+  // सिर और माथे के आभूषण
+  "सोने का माँग टीका",
+  "सोने का झूमर",
+  "सोने का बोरला",
+  "सोने की रखड़ी",
+  "सोने का शीशफूल",
+
+  // कान के आभूषण
+  "सोने के कान के आभूषण",
+  "सोने का झुमका",
+  "सोने की झुमकी",
+  "सोने की बाली",
+  "सोने के टॉप्स",
+  "सोने का सूई-धागा",
+  "सोने की कान की चेन",
+  "सोने का कर्णफूल",
+  "सोने का कुंडल",
+  "सोने की मुरकी",
+  "सोने की लटकन",
+
+  // गले के आभूषण
+  "सोने के गले के आभूषण",
+  "सोने का हार",
+  "सोने की नेकलेस",
+  "सोने का चोकर",
+  "सोने का रानी हार",
+  "सोने का लच्छा",
+  "सोने की हँसली",
+  "सोने की कंठी",
+  "सोने की तिमणिया",
+  "सोने का मंगलसूत्र",
+  "सोने का चंद्रहार",
+
+  // हाथ और कलाई के आभूषण
+  "सोने की अंगूठी",
+  "सोने की चूड़ी",
+  "सोने का कंगन",
+  "सोने का ब्रेसलेट",
+  "सोने का बाजूबंद",
+  "सोने का हथफूल",
+  "सोने की पोंची",
+  "सोने की गजरा",
+  "सोने का कड़ा",
+
+  // कमर और पैर के आभूषण
+  "सोने का कमरबंद",
+  "सोने की तगड़ी",
+  "सोने की बिछिया",
+  "सोने की चाँट",
+  "सोने की पायल",
+  "सोने की पाजेब",
+
+  // नाक के आभूषण
+  "सोने की नथ",
+  "सोने की नथिया",
+  "सोने की लौंग",
+  "सोने की नथनी",
+  "सोने की नोज पिन",
+  "सोने की बेसरी",
+];
 
   const silverItems = [
-    "पायल",
-    "चाँदी की अंगूठी",
-    "चाँदी की चेन",
-    "चाँदी का कंगन",
-    "चाँदी की पायल",
-    "चाँदी की बाली",
-    "चाँदी का पेंडेंट",
-    "चाँदी का कटोरा",
-  ];
+  "चाँदी की पायल",
+  "चाँदी की बिछिया",
+  "चाँदी की पाजेब",
+  "चाँदी का कंगन",
+  "चाँदी का कड़ा",
+  "चाँदी की चूड़ियाँ",
+  "चाँदी की अंगूठी",
+  "चाँदी का बाजूबंद",
+  "चाँदी का हथफूल",
+  "चाँदी की पोंची",
+  "चाँदी का गजरा",
+  "चाँदी का हार",
+  "चाँदी की हँसली",
+  "चाँदी की कंठी",
+  "चाँदी की तिमणिया",
+  "चाँदी की मटरमाला",
+  "चाँदी का चंदनहार",
+  "चाँदी का झुमका, झुमकी",
+  "चाँदी की चाँद बालियाँ",
+  "चाँदी का कर्णफूल",
+  "चाँदी की बाली",
+  "चाँदी का कुण्डल",
+  "चाँदी का कान पासा",
+  "चाँदी की मुरकी",
+  "चाँदी का मांग टीका",
+  "चाँदी का टीका",
+  "चाँदी का बोरला",
+  "चाँदी की रखड़ी",
+  "चाँदी का शीशफूल",
+  "चाँदी की नथ",
+  "चाँदी की नथड़ी",
+  "चाँदी की नथुनी",
+  "चाँदी की नथनी",
+  "चाँदी की लौंग",
+  "चाँदी की नोज पिन",
+  "चाँदी का कमरबंद",
+  "चाँदी की तगड़ी",
+  "चाँदी की करधनी",
+  "चाँदी का कंदोरा",
+];
 
-  const baseAmount =
-    metal === "gold"
-      ? ((Number(weight) || 0) * (Number(rate) || 0)) / 10
-      : (Number(weight) || 0) * (Number(rate) || 0);
+  // Gold rate is entered per 10 grams; silver rate is entered per kilo.
+  const getItemAmount = (line) =>
+    line.metal === "gold"
+      ? ((Number(line.weight) || 0) * (Number(line.rate) || 0)) / 10
+      : ((Number(line.weight) || 0) * (Number(line.rate) || 0)) / 1000;
+
+  const baseAmount = items.reduce(
+    (total, line) => total + getItemAmount(line),
+    0
+  );
 
   const makingAmount = Number(making) || 0;
   const offerAmount = Number(offer) || 0;
 
-  const subtotal =
-    baseAmount + makingAmount - offerAmount;
+  const subtotal = baseAmount + makingAmount - offerAmount;
 
   const gstAmount = gstEnabled
     ? (subtotal * Number(gstRate || 0)) / 100
@@ -70,25 +169,51 @@ function NewBill() {
 
   const grandTotal = subtotal + gstAmount;
 
+  // Gold rate is shared by the same carat. Silver remains item-wise.
+  const rateKey =
+    metal === "gold" ? `gold-${carat}` : `silver-${item}`;
+
+  const matchingRate = items.find(
+    (line) => line.rateKey === rateKey
+  )?.rate;
+
   const handleMetalChange = (value) => {
     setMetal(value);
     setItem("");
     setCarat("");
+    setWeight("");
+    setQuantity(1);
+
+    if (value === "silver") {
+      setRate("");
+    } else {
+      setRate("");
+    }
   };
 
-  const handlePrint = async () => {
-    // बिल प्रिंट करने से पहले जरूरी जानकारी पूरी है या नहीं, यह जांचें।
-    // इससे कोई खाली/अधूरा बिल Firestore में सेव नहीं होगा।
-    if (!customerName.trim()) {
-      alert("कृपया ग्राहक का नाम दर्ज करें।");
-      return;
-    }
+  const handleCaratChange = (value) => {
+    setCarat(value);
 
-    if (!customerMobile.trim()) {
-      alert("कृपया ग्राहक का मोबाइल नंबर दर्ज करें।");
-      return;
-    }
+    const existing = items.find(
+      (line) => line.rateKey === `gold-${value}`
+    );
 
+    setRate(existing ? String(existing.rate) : "");
+  };
+
+  const handleItemChange = (value) => {
+    setItem(value);
+
+    if (metal === "silver") {
+      const existing = items.find(
+        (line) => line.rateKey === `silver-${value}`
+      );
+
+      setRate(existing ? String(existing.rate) : "");
+    }
+  };
+
+  const addItem = () => {
     if (!metal || !item) {
       alert("कृपया आभूषण और उसका प्रकार चुनें।");
       return;
@@ -114,13 +239,82 @@ function NewBill() {
       return;
     }
 
+    const rateKey =
+      metal === "gold" ? `gold-${carat}` : `silver-${item}`;
+
+    setItems((prev) => {
+      const existingIndex = prev.findIndex(
+        (line) =>
+          line.itemName === item &&
+          line.metal === metal &&
+          line.carat === (metal === "gold" ? carat : "")
+      );
+
+      if (existingIndex !== -1) {
+        return prev.map((line, index) =>
+          index === existingIndex
+            ? {
+                ...line,
+                quantity:
+                  (Number(line.quantity) || 0) +
+                  (Number(quantity) || 0),
+                weight:
+                  (Number(line.weight) || 0) +
+                  (Number(weight) || 0),
+                rate: Number(rate) || 0,
+              }
+            : line
+        );
+      }
+
+      return [
+        ...prev,
+        {
+          id: `${Date.now()}-${Math.random()}`,
+          itemName: item,
+          metal,
+          carat: metal === "gold" ? carat : "",
+          quantity: Number(quantity) || 0,
+          weight: Number(weight) || 0,
+          rate: Number(rate) || 0,
+          rateKey,
+        },
+      ];
+    });
+
+    setItem("");
+    setCarat("");
+    setQuantity(1);
+    setWeight("");
+    setRate("");
+    setMetal("");
+  };
+
+  const removeItem = (id) => {
+    setItems((prev) => prev.filter((line) => line.id !== id));
+  };
+
+  const handlePrint = async () => {
+    if (!customerName.trim()) {
+      alert("कृपया ग्राहक का नाम दर्ज करें।");
+      return;
+    }
+
+    if (!customerMobile.trim()) {
+      alert("कृपया ग्राहक का मोबाइल नंबर दर्ज करें।");
+      return;
+    }
+
+    if (items.length === 0) {
+      alert("कृपया कम से कम एक आभूषण बिल में जोड़ें।");
+      return;
+    }
+
     if (isPrinting) return;
 
     setIsPrinting(true);
 
     try {
-      // Counter transaction की जरूरत नहीं है। इससे केवल bills collection की
-      // permission होने पर भी बिल सेव हो सकता है और numbering unique रहेगी।
       const now = new Date();
       const generatedBillNumber = `BILL-${now.getFullYear()}${String(
         now.getMonth() + 1
@@ -133,42 +327,58 @@ function NewBill() {
       setBillNumber(generatedBillNumber);
       setPrintDateTime(now);
 
-      // State update के बाद print layout को render होने का मौका दें।
+      const billData = {
+        billNumber: generatedBillNumber,
+        invoiceNo: generatedBillNumber,
+        customerName: customerName.trim(),
+        customerMobile: customerMobile.trim(),
+
+        // New multi-item structure.
+        items: items.map((line) => ({
+          itemName: line.itemName,
+          metal: line.metal,
+          carat: line.metal === "gold" ? line.carat : "",
+          quantity: Number(line.quantity) || 0,
+          weight: Number(line.weight) || 0,
+          rate: Number(line.rate) || 0,
+          amount: getItemAmount(line),
+        })),
+
+        // Kept for compatibility with older bill-history records.
+        itemName: items[0]?.itemName || "",
+        metal: items[0]?.metal || "",
+        carat: items[0]?.metal === "gold" ? items[0]?.carat || "" : "",
+        quantity: Number(items[0]?.quantity) || 0,
+        weight: Number(items[0]?.weight) || 0,
+        rate: Number(items[0]?.rate) || 0,
+
+        makingCharges: makingAmount,
+        offer: offerAmount,
+        gstEnabled,
+        gstRate: gstEnabled ? Number(gstRate) || 0 : 0,
+        gstAmount,
+        subtotal,
+        grandTotal,
+        createdAt: serverTimestamp(),
+        printedAt: serverTimestamp(),
+      };
+
+      // Print first. Firestore save happens after the print dialog closes.
       setTimeout(async () => {
         try {
-          // IMPORTANT: पहले print होगा, उसके बाद ही Firestore में save होगा।
           window.print();
-
-          const billData = {
-            billNumber: generatedBillNumber,
-            invoiceNo: generatedBillNumber,
-            customerName: customerName.trim(),
-            customerMobile: customerMobile.trim(),
-            itemName: item,
-            metal,
-            carat: metal === "gold" ? carat : "",
-            quantity: Number(quantity) || 0,
-            weight: Number(weight) || 0,
-            rate: Number(rate) || 0,
-            makingCharges: makingAmount,
-            offer: offerAmount,
-            gstEnabled,
-            gstRate: gstEnabled ? Number(gstRate) || 0 : 0,
-            gstAmount,
-            subtotal,
-            grandTotal,
-            createdAt: serverTimestamp(),
-            printedAt: serverTimestamp(),
-          };
-
-          // Print dialog बंद होने के बाद ही database में save होगा।
           await addDoc(collection(db, "bills"), billData);
-
           console.log("Bill saved successfully:", generatedBillNumber);
         } catch (error) {
-          console.error("Bill save/print error:", error?.code, error?.message, error);
+          console.error(
+            "Bill save/print error:",
+            error?.code,
+            error?.message,
+            error
+          );
           alert(
-            `बिल डेटाबेस में सेव नहीं हो सका: ${error?.code || error?.message || "Unknown error"
+            `बिल डेटाबेस में सेव नहीं हो सका: ${
+              error?.code || error?.message || "Unknown error"
             }`
           );
         } finally {
@@ -179,7 +389,8 @@ function NewBill() {
       console.error("Bill print error:", error?.code, error?.message, error);
       setIsPrinting(false);
       alert(
-        `बिल प्रिंट नहीं हो सका: ${error?.code || error?.message || "Unknown error"
+        `बिल प्रिंट नहीं हो सका: ${
+          error?.code || error?.message || "Unknown error"
         }`
       );
     }
@@ -429,274 +640,219 @@ function NewBill() {
 
 
           {/* ITEM SELECTION */}
-
           {metal && (
-
             <div className="selection-area">
-
               <div className="field">
-
-                <label>
-                  आभूषण का प्रकार
-                </label>
-
+                <label>आभूषण का प्रकार</label>
                 <select
                   value={item}
-                  onChange={(e) =>
-                    setItem(e.target.value)
-                  }
+                  onChange={(e) => handleItemChange(e.target.value)}
                 >
-
-                  <option value="">
-                    आभूषण चुनें
-                  </option>
-
-                  {(metal === "gold"
-                    ? goldItems
-                    : silverItems
-                  ).map((name) => (
-
-                    <option
-                      value={name}
-                      key={name}
-                    >
-                      {name}
-                    </option>
-
-                  ))}
-
+                  <option value="">आभूषण चुनें</option>
+                  {(metal === "gold" ? goldItems : silverItems).map(
+                    (name) => (
+                      <option value={name} key={name}>
+                        {name}
+                      </option>
+                    )
+                  )}
                 </select>
-
               </div>
 
-
               {/* ONLY GOLD CARAT */}
-
               {metal === "gold" && (
-
                 <div className="field">
-
-                  <label>
-                    सोने की शुद्धता
-                  </label>
-
+                  <label>सोने की शुद्धता</label>
                   <select
                     value={carat}
-                    onChange={(e) =>
-                      setCarat(e.target.value)
-                    }
+                    onChange={(e) => handleCaratChange(e.target.value)}
                   >
-
-                    <option value="">
-                      कैरेट चुनें
-                    </option>
-
-                    <option value="24K">
-                      24 कैरेट
-                    </option>
-
-                    <option value="22K">
-                      22 कैरेट
-                    </option>
-
-                    <option value="20K">
-                      20 कैरेट
-                    </option>
-
-                    <option value="18K">
-                      18 कैरेट
-                    </option>
-
-                    <option value="16K">
-                      16 कैरेट
-                    </option>
-
-                    <option value="14K">
-                      14 कैरेट
-                    </option>
-
+                    <option value="">कैरेट चुनें</option>
+                    <option value="24K">24 कैरेट</option>
+                    <option value="22K">22 कैरेट</option>
+                    <option value="20K">20 कैरेट</option>
+                    <option value="18K">18 कैरेट</option>
+                    <option value="16K">16 कैरेट</option>
+                    <option value="14K">14 कैरेट</option>
                   </select>
-
                 </div>
-
               )}
-
             </div>
-
           )}
 
-        </section>
-
-
-        {/* ================= BILLING DETAILS ================= */}
-
-        <section className="section-card">
-
-          <div className="section-heading">
-
-            <span>
-              03
-            </span>
-
-            <div>
-
-              <h3>
-                बिल की जानकारी
-              </h3>
-
-              <p>
-                वजन, दर और वैकल्पिक शुल्क दर्ज करें
-              </p>
-
-            </div>
-
-          </div>
-
-
-          {!metal || !item ? (
-
-            <div className="message">
-              पहले आभूषण और उसका प्रकार चुनें।
-            </div>
-
-          ) : (
-
+          {metal && item && (
             <div className="billing-fields">
-
-              {/* QUANTITY */}
-
               <div className="field">
-
-                <label>
-                  मात्रा
-                </label>
-
+                <label>मात्रा</label>
                 <input
                   type="number"
                   min="1"
                   value={quantity}
-                  onChange={(e) =>
-                    setQuantity(e.target.value)
-                  }
+                  onChange={(e) => setQuantity(e.target.value)}
                 />
-
               </div>
 
-
-              {/* WEIGHT */}
-
               <div className="field">
-
                 <label>
-
                   वजन
-
                   <small>
-                    {metal === "gold"
-                      ? " ₹ / 10 ग्राम"
-                      : " ₹ / किलो"}
+                    {metal === "gold" ? " ग्राम" : " ग्राम"}
                   </small>
-
                 </label>
-
                 <input
                   type="number"
                   step="0.01"
                   placeholder="0.00"
                   value={weight}
-                  onChange={(e) =>
-                    setWeight(e.target.value)
-                  }
+                  onChange={(e) => setWeight(e.target.value)}
                 />
-
               </div>
 
-
-              {/* RATE */}
-
               <div className="field">
-
                 <label>
-
                   दर
-
                   <small>
                     {metal === "gold"
                       ? "प्रति 10 ग्राम"
                       : "प्रति किलो"}
                   </small>
-
                 </label>
-
                 <input
                   type="number"
-                  placeholder="दर दर्ज करें"
-                  value={rate}
-                  onChange={(e) =>
-                    setRate(e.target.value)
+                  placeholder={
+                    matchingRate
+                      ? `पहले से ₹ ${Number(matchingRate).toLocaleString(
+                          "en-IN"
+                        )}`
+                      : "दर दर्ज करें"
                   }
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
                 />
-
+                {matchingRate && !rate && (
+                  <small style={{ marginTop: 5 }}>
+                    इस {metal === "gold" ? "कैरेट" : "आभूषण"} की दर पहले से
+                    उपलब्ध है।
+                  </small>
+                )}
               </div>
 
+              <button
+                type="button"
+                className="print-bill"
+                onClick={addItem}
+                style={{ alignSelf: "end" }}
+              >
+                आइटम जोड़ें <span>+</span>
+              </button>
+            </div>
+          )}
 
-              {/* MAKING */}
+          {/* ADDED ITEMS */}
+          {items.length > 0 && (
+            <div className="added-items">
+              <div className="section-heading" style={{ marginTop: 24 }}>
+                <span>03</span>
+                <div>
+                  <h3>बिल में जोड़े गए आभूषण</h3>
+                  <p>
+                    समान आभूषण और समान कैरेट अपने आप एक साथ जुड़ते हैं।
+                  </p>
+                </div>
+              </div>
 
+              <div className="added-items-list">
+                {items.map((line, index) => (
+                  <div className="added-item-row" key={line.id}>
+                    <div>
+                      <strong>
+                        {String(index + 1).padStart(2, "0")} •{" "}
+                        {line.itemName}
+                      </strong>
+                      <span>
+                        {line.metal === "gold"
+                          ? `सोना • ${line.carat}`
+                          : "चाँदी"}
+                      </span>
+                    </div>
+
+                    <div>
+                      <strong>{line.quantity} नग</strong>
+                      <span>{line.weight} ग्राम</span>
+                    </div>
+
+                    <div>
+                      <strong>
+                        ₹ {Number(getItemAmount(line)).toLocaleString(
+                          "en-IN",
+                          { maximumFractionDigits: 2 }
+                        )}
+                      </strong>
+                      <span>
+                        दर ₹{" "}
+                        {Number(line.rate).toLocaleString("en-IN")}
+                      </span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => removeItem(line.id)}
+                      aria-label="आइटम हटाएँ"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+
+        {/* ================= BILLING DETAILS ================= */}
+        <section className="section-card">
+          <div className="section-heading">
+            <span>04</span>
+            <div>
+              <h3>बिल की अतिरिक्त जानकारी</h3>
+              <p>बनाने का शुल्क और छूट पूरे बिल पर एक बार लागू होगी।</p>
+            </div>
+          </div>
+
+          {items.length === 0 ? (
+            <div className="message">
+              पहले कम से कम एक आभूषण बिल में जोड़ें।
+            </div>
+          ) : (
+            <div className="billing-fields">
               <div className="field">
-
                 <label>
-
                   बनाने का शुल्क
-
-                  <em>
-                    वैकल्पिक
-                  </em>
-
+                  <em>पूरे बिल पर</em>
                 </label>
-
                 <input
                   type="number"
                   placeholder="₹ 0"
                   value={making}
-                  onChange={(e) =>
-                    setMaking(e.target.value)
-                  }
+                  onChange={(e) => setMaking(e.target.value)}
                 />
-
               </div>
 
-
-              {/* OFFER */}
-
               <div className="field">
-
                 <label>
-
                   छूट / ऑफर
-
-                  <em>
-                    वैकल्पिक
-                  </em>
-
+                  <em>पूरे बिल पर</em>
                 </label>
-
                 <input
                   type="number"
                   placeholder="₹ 0"
                   value={offer}
-                  onChange={(e) =>
-                    setOffer(e.target.value)
-                  }
+                  onChange={(e) => setOffer(e.target.value)}
                 />
-
               </div>
-
             </div>
-
           )}
-
         </section>
-
 
         {/* ================= GST ================= */}
 
@@ -782,7 +938,7 @@ function NewBill() {
             <div>
 
               <span>
-                वस्तु की राशि
+                सभी वस्तुओं की राशि
               </span>
 
               <strong>
@@ -1036,103 +1192,79 @@ function NewBill() {
         </div>
 
 
-        {/* ITEM */}
-
+        {/* ITEMS */}
         <div className="print-section-title">
           आभूषण का विवरण
         </div>
 
+        <div className="print-items-list">
+          {items.map((line, index) => (
+            <div className="print-item-box" key={line.id}>
+              <div className="print-item-main">
+                <div className="print-item-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
 
-        <div className="print-item-box">
+                <div>
+                  <h3>{line.itemName || "आभूषण"}</h3>
+                  <p>
+                    {line.metal === "gold"
+                      ? `सोना${line.carat ? ` • ${line.carat}` : ""}`
+                      : "चाँदी"}
+                  </p>
+                </div>
+              </div>
 
-          <div className="print-item-main">
+              <div
+                className={`print-item-details ${
+                  line.metal === "gold"
+                    ? "gold-details"
+                    : "silver-details"
+                }`}
+              >
+                <div>
+                  <span>मात्रा</span>
+                  <strong>{line.quantity}</strong>
+                </div>
 
-            <div className="print-item-number">
-              01
-            </div>
+                <div>
+                  <span>वजन</span>
+                  <strong>{line.weight || "0"} ग्राम</strong>
+                </div>
 
-            <div>
+                <div>
+                  <span>दर</span>
+                  <strong>
+                    ₹{" "}
+                    {Number(line.rate || 0).toLocaleString("en-IN")}
+                  </strong>
+                  <small>
+                    {line.metal === "gold"
+                      ? "प्रति 10 ग्राम"
+                      : "प्रति किलो"}
+                  </small>
+                </div>
 
-              <h3>
-                {item || "आभूषण"}
-              </h3>
-
-              <p>
-
-                {metal === "gold"
-                  ? `सोना${carat
-                    ? ` • ${carat}`
-                    : ""
-                  }`
-                  : "चाँदी"}
-
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div
-            className={`print-item-details ${metal === "gold" ? "gold-details" : "silver-details"
-              }`}
-          >
-
-            <div>
-              <span>
-                मात्रा
-              </span>
-
-              <strong>
-                {quantity}
-              </strong>
-            </div>
-
-            <div>
-              <span>
-                वजन
-              </span>
-
-              <strong>
-                {weight || "0"} ग्राम
-              </strong>
-            </div>
-
-            <div>
-              <span>
-                दर
-              </span>
-
-              <strong>
-                ₹{" "}
-                {Number(rate || 0).toLocaleString(
-                  "en-IN"
+                {line.metal === "gold" && (
+                  <div>
+                    <span>कैरेट</span>
+                    <strong>{line.carat || "-"}</strong>
+                  </div>
                 )}
-              </strong>
+              </div>
 
-              <small>
-                {metal === "gold"
-                  ? "प्रति ग्राम"
-                  : "प्रति किलो"}
-              </small>
-            </div>
-
-            {metal === "gold" && (
-              <div>
-                <span>
-                  कैरेट
-                </span>
-
+              <div className="print-item-line-total">
+                <span>वस्तु राशि</span>
                 <strong>
-                  {carat || "-"}
+                  ₹{" "}
+                  {Number(getItemAmount(line)).toLocaleString("en-IN", {
+                    maximumFractionDigits: 2,
+                  })}
                 </strong>
               </div>
-            )}
-
-          </div>
-
+            </div>
+          ))}
         </div>
-
 
         {/* AMOUNT */}
 
@@ -1141,7 +1273,7 @@ function NewBill() {
           <div className="print-amount-row">
 
             <span>
-              वस्तु की राशि
+              सभी वस्तुओं की राशि
             </span>
 
             <strong>

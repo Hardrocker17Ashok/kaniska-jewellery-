@@ -1,449 +1,1123 @@
+
+/* =========================================================
+   KANISHKA JEWELLERS
+   NEW BILL — PREMIUM DARK UI + PREMIUM A4 PRINT
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap");
+
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+:root {
+  --gold: #b58a3a;
+  --gold-light: #d4af63;
+  --gold-dark: #8f6826;
+
+  --black: #0c0c0b;
+  --black-2: #111110;
+  --black-3: #171716;
+  --black-4: #1d1c1a;
+
+  --white: #f5f2eb;
+  --text: #e9e5dc;
+  --muted: #85817a;
+  --muted-light: #aaa59c;
+
+  --border: rgba(255, 255, 255, 0.075);
+  --gold-border: rgba(181, 138, 58, 0.24);
+
+  --danger: #d16f6f;
+
+  --shadow-sm:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  --shadow-md:
+    0 18px 50px rgba(0, 0, 0, 0.28);
+
+  --radius: 18px;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
 * {
   box-sizing: border-box;
 }
 
-.new-bill-page {
-  min-height: 100vh;
-  background: #11110f;
-  color: #eeeeeb;
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(181, 138, 58, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(181, 138, 58, 0.055),
+      transparent 27%
+    ),
+    #0c0c0b;
+
+  color: var(--text);
+
+  font-family:
+    "DM Sans",
+    "Noto Sans Devanagari",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 
-/* ================= HEADER ================= */
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.new-bill-page {
+  min-height: 100vh;
+
+  padding-bottom: 55px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.015),
+      transparent 25%
+    );
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .sales-header {
-  min-height: 82px;
-  padding: 0 5%;
+  width: 100%;
+  height: 78px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  padding: 0 42px;
+
+  background:
+    rgba(13, 13, 12, 0.90);
+
+  border-bottom:
+    1px solid rgba(181, 138, 58, 0.17);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  box-shadow:
+    0 8px 35px rgba(0, 0, 0, 0.22);
 }
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
 
 .sales-brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+
+  gap: 13px;
 }
 
 .sales-brand img {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
+
   object-fit: contain;
+
+  border-radius: 12px;
 }
 
-.sales-brand div {
+.sales-brand > div {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+
+  gap: 1px;
 }
 
-.sales-brand span,
-.sales-title>div>span,
-.sales-filter-heading span,
-.today-bills-heading span {
-  color: #c5a05b;
-  font-size: 10px;
-  letter-spacing: 2px;
+.sales-brand span {
+  color: #f3efe7;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  letter-spacing: 0.1px;
 }
 
 .sales-brand strong {
-  font-size: 18px;
+  color: #c49a4c;
+
+  font-size: 9px;
   font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2.2px;
 }
 
-.sales-back,
-.sales-refresh,
-.sales-filter-heading button {
-  border: 1px solid rgba(197, 160, 91, 0.28);
-  background: transparent;
-  color: #d8c28f;
-  border-radius: 5px;
-  cursor: pointer;
-  font: inherit;
-}
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
 
 .sales-back {
-  padding: 11px 17px;
-  font-size: 13px;
+  min-height: 39px;
+
+  padding: 0 16px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #cbc6bd;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    all 0.2s ease;
+}
+
+.sales-back:hover {
+  color: #dfb968;
+
+  border-color:
+    rgba(181, 138, 58, 0.40);
+
+  background:
+    rgba(181, 138, 58, 0.065);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.20);
 }
 
 
-/* ================= MAIN ================= */
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
 
 .bill-container {
-  width: min(1250px, 92%);
-  margin: auto;
-  padding: 45px 0 65px;
+  width: min(1100px, calc(100% - 40px));
+
+  margin: 42px auto 0;
 }
 
 
-/* ================= TITLE ================= */
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
 
 .page-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 30px;
+
+  margin-bottom: 25px;
 }
 
-.page-heading>div:first-child span {
-  color: #b9955b;
+.page-heading > div:first-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.page-heading span {
+  color: #c39a4e;
+
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2.4px;
 }
 
 .page-heading h2 {
-  margin: 6px 0 0;
-  color: #f0eee9;
-  font-family: Georgia, serif;
-  font-size: 38px;
-  font-weight: 400;
+  margin: 0;
+
+  color: #f3efe7;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 29px;
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.4px;
 }
 
 .bill-date {
   display: flex;
   flex-direction: column;
+
   align-items: flex-end;
-  gap: 4px;
+
+  gap: 3px;
 }
 
 .bill-date span {
-  color: #85827b;
+  color: #66635d;
+
   font-size: 10px;
 }
 
 .bill-date strong {
-  color: #d0cdc5;
-  font-size: 13px;
+  color: #c8c3b9;
+
+  font-size: 12px;
+  font-weight: 600;
 }
 
 
-/* ================= COMMON CARD ================= */
+/* =========================================================
+   SECTION CARD
+   ========================================================= */
 
 .section-card {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+
   padding: 28px;
 
-  background: #191917;
-  border: 1px solid #302f2a;
-  border-radius: 7px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(29, 28, 26, 0.98),
+      rgba(18, 18, 17, 0.98)
+    );
 
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border:
+    1px solid rgba(255, 255, 255, 0.075);
+
+  border-radius: var(--radius);
+
+  color: var(--text);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.23);
+
+  position: relative;
+
+  overflow: hidden;
 }
+
+.section-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(181, 138, 58, 0.32),
+      transparent
+    );
+
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
 
 .section-heading {
   display: flex;
   align-items: center;
+
   gap: 13px;
+
   margin-bottom: 25px;
 }
 
-.section-heading>span {
-  width: 34px;
-  height: 34px;
+.section-heading > span {
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #80683f;
-  border-radius: 50%;
+  border:
+    1px solid rgba(181, 138, 58, 0.22);
 
-  color: #c19b5e;
-  font-family: Georgia, serif;
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(181, 138, 58, 0.18),
+      rgba(181, 138, 58, 0.06)
+    );
+
+  color: #d0a75a;
+
   font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
 }
 
 .section-heading h3 {
   margin: 0;
-  color: #eeeae2;
-  font-size: 16px;
-  font-weight: 600;
+
+  color: #eae6de;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .section-heading p {
-  margin: 4px 0 0;
-  color: #817e76;
-  font-size: 11px;
+  margin: 3px 0 0;
+
+  color: #6f6c66;
+
+  font-size: 10px;
+
+  line-height: 1.5;
 }
 
 
-/* ================= FIELDS ================= */
-
-.two-fields {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 20px;
-}
+/* =========================================================
+   FIELD
+   ========================================================= */
 
 .field {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
+
+  min-width: 0;
 }
 
 .field label {
-  color: #bdb9b0;
-  font-size: 12px;
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #aaa59b;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 11px;
   font-weight: 600;
 }
 
 .field label small {
-  color: #bd995f;
-  font-size: 10px;
-  margin-left: 4px;
+  color: #65625d;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size: 9px;
+  font-weight: 500;
 }
 
 .field label em {
-  color: #77736c;
-  font-size: 9px;
+  margin-left: auto;
+
+  color: #625f59;
+
+  font-size: 8px;
+
   font-style: normal;
-  margin-left: 5px;
+
+  font-weight: 500;
 }
 
 .field input,
 .field select {
   width: 100%;
-  height: 50px;
+  height: 46px;
 
   padding: 0 14px;
 
-  border: 1px solid #393833;
-  border-radius: 5px;
+  border:
+    1px solid rgba(255, 255, 255, 0.095);
+
+  border-radius: 11px;
 
   outline: none;
 
-  background: #11110f;
-  color: #e9e6df;
+  background:
+    rgba(7, 7, 7, 0.46);
 
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-}
+  color: #e8e3da;
 
-.field select {
-  cursor: pointer;
+  font-size: 12px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.018);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .field input::placeholder {
-  color: #65625b;
+  color: #5d5a55;
+}
+
+.field input:hover,
+.field select:hover {
+  border-color:
+    rgba(181, 138, 58, 0.28);
 }
 
 .field input:focus,
 .field select:focus {
-  border-color: #a78148;
-  box-shadow: 0 0 0 2px rgba(167, 129, 72, 0.12);
+  border-color:
+    rgba(181, 138, 58, 0.72);
+
+  background:
+    rgba(15, 14, 12, 0.80);
+
+  box-shadow:
+    0 0 0 3px rgba(181, 138, 58, 0.075),
+    0 8px 25px rgba(0, 0, 0, 0.16);
 }
 
 
-/* ================= METAL ================= */
+/* Number input */
+
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+
+  margin: 0;
+}
+
+.field input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+
+/* =========================================================
+   CUSTOMER
+   ========================================================= */
+
+.two-fields {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+
+/* =========================================================
+   METAL SELECTION
+   ========================================================= */
 
 .metal-selection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 15px;
+
+  margin-bottom: 21px;
 }
 
 .metal-card {
-  min-height: 95px;
-
-  position: relative;
+  width: 100%;
 
   display: flex;
   align-items: center;
-  gap: 15px;
 
-  padding: 18px;
+  gap: 13px;
 
-  border: 1px solid #373630;
-  border-radius: 7px;
+  padding: 16px;
 
-  background: #151513;
-  color: #eeeeeb;
+  border:
+    1px solid rgba(255, 255, 255, 0.085);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1a1a18,
+      #121211
+    );
+
+  color: #e8e3da;
 
   text-align: left;
-  cursor: pointer;
 
-  transition: 0.2s ease;
+  box-shadow:
+    0 7px 25px rgba(0, 0, 0, 0.13);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .metal-card:hover {
-  border-color: #76603b;
-  background: #1b1a17;
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(181, 138, 58, 0.34);
+
+  background:
+    linear-gradient(
+      145deg,
+      #1d1b17,
+      #151514
+    );
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.20);
 }
 
 .metal-card.active {
-  border-color: #a57d43;
-  background: #211d16;
+  border-color:
+    rgba(197, 155, 76, 0.68);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(181, 138, 58, 0.15),
+      rgba(181, 138, 58, 0.035)
+    );
+
+  box-shadow:
+    0 10px 35px rgba(181, 138, 58, 0.085),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 .metal-symbol {
-  width: 52px;
-  height: 52px;
+  width: 45px;
+  height: 45px;
 
-  flex-shrink: 0;
+  flex: 0 0 45px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
+  border-radius: 13px;
 
   font-family: Georgia, serif;
-  font-size: 15px;
+
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .gold-symbol {
-  background: #292216;
-  border: 1px solid #755b32;
-  color: #d1ad6b;
+  background:
+    rgba(181, 138, 58, 0.13);
+
+  border:
+    1px solid rgba(181, 138, 58, 0.25);
+
+  color: #d1a652;
 }
 
 .silver-symbol {
-  background: #222321;
-  border: 1px solid #575953;
-  color: #bfc1bd;
+  background:
+    rgba(190, 195, 200, 0.075);
+
+  border:
+    1px solid rgba(190, 195, 200, 0.14);
+
+  color: #afb2b5;
 }
 
-.metal-card div:nth-child(2) {
+.metal-card > div:nth-child(2) {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
-  gap: 4px;
+
+  gap: 2px;
 }
 
 .metal-card strong {
   color: #eeeae2;
-  font-size: 15px;
-  font-weight: 600;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 14px;
 }
 
-.metal-card div:nth-child(2) span {
-  color: #77746d;
-  font-size: 10px;
+.metal-card span {
+  color: #6d6a64;
+
+  font-size: 9px;
 }
 
-.metal-card>b {
-  position: absolute;
-  right: 18px;
+.metal-card b {
+  margin-left: auto;
 
-  color: #bd995d;
+  color: #c69c4c;
+
   font-size: 17px;
 }
 
 
-/* ================= ITEM SELECTION ================= */
+/* =========================================================
+   SELECTION AREA
+   ========================================================= */
 
 .selection-area {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+
+  padding-top: 3px;
+
+  margin-bottom: 17px;
 }
 
 
-/* ================= BILLING ================= */
+/* =========================================================
+   BILLING FIELDS
+   ========================================================= */
 
 .billing-fields {
   display: grid;
-  grid-template-columns: 0.7fr 1fr 1.2fr 1fr 1fr;
-  gap: 16px;
+
+  grid-template-columns:
+    minmax(100px, 0.7fr)
+    minmax(150px, 1fr)
+    minmax(180px, 1.2fr)
+    auto;
+
+  align-items: end;
+
+  gap: 13px;
 }
 
-.message {
-  padding: 25px;
 
-  border: 1px dashed #3b3933;
-  border-radius: 5px;
+/* =========================================================
+   GOLD BUTTON
+   ========================================================= */
+
+.print-bill {
+  min-height: 46px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 0 20px;
+
+  border: 0;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c0974b,
+      #9a702d
+    );
+
+  color: #fff;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  box-shadow:
+    0 9px 23px rgba(151, 108, 39, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.print-bill:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 13px 30px rgba(151, 108, 39, 0.30);
+}
+
+.print-bill:active {
+  transform: translateY(0);
+}
+
+.print-bill span {
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size: 18px;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   ADDED ITEMS
+   ========================================================= */
+
+.added-items {
+  margin-top: 28px;
+
+  padding-top: 23px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.added-items .section-heading {
+  margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   ADDED ITEMS LIST
+   ========================================================= */
+
+.added-items-list {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    #111110;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.075);
+
+  border-radius: 13px;
+}
+
+.added-item-row {
+  min-height: 67px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 1.7fr)
+    minmax(110px, 0.7fr)
+    minmax(150px, 0.9fr)
+    38px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 10px 15px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  transition:
+    background 0.18s ease;
+}
+
+.added-item-row:last-child {
+  border-bottom: 0;
+}
+
+.added-item-row:hover {
+  background:
+    rgba(181, 138, 58, 0.035);
+}
+
+.added-item-row > div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.added-item-row strong {
+  overflow: hidden;
+
+  color: #e5e0d7;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.added-item-row span {
+  color: #68655f;
+
+  font-size: 9px;
+}
+
+.added-item-row > div:nth-child(2),
+.added-item-row > div:nth-child(3) {
+  align-items: flex-end;
+}
+
+.added-item-row > div:nth-child(3) strong {
+  color: #c69c4d;
+
+  font-size: 13px;
+}
+
+.added-item-row button {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background:
+    rgba(178, 58, 58, 0.10);
+
+  color: var(--danger);
+
+  font-size: 20px;
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.added-item-row button:hover {
+  background:
+    rgba(178, 58, 58, 0.18);
+
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+  padding: 16px;
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.11);
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+
+  color: #69665f;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
 
   text-align: center;
 
-  color: #77736c;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
-/* ================= GST ================= */
+/* =========================================================
+   GST
+   ========================================================= */
 
 .gst-card {
   min-height: 78px;
-
-  margin-bottom: 20px;
-  padding: 18px 24px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  background: #191917;
-  border: 1px solid #302f2a;
-  border-radius: 7px;
+  gap: 20px;
+
+  margin-bottom: 18px;
+
+  padding: 17px 21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1d1b17,
+      #131312
+    );
+
+  border:
+    1px solid rgba(181, 138, 58, 0.20);
+
+  border-radius: var(--radius);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.18);
 }
 
 .gst-info {
   display: flex;
   align-items: center;
-  gap: 13px;
+
+  gap: 12px;
 }
 
 .gst-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
+  border:
+    1px solid rgba(181, 138, 58, 0.20);
 
-  background: #282116;
-  border: 1px solid #725a32;
+  border-radius: 12px;
 
-  color: #c19b5e;
+  background:
+    rgba(181, 138, 58, 0.12);
 
-  font-family: Georgia, serif;
-  font-size: 17px;
+  color: #c69d4f;
+
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .gst-info h3 {
   margin: 0;
-  color: #eeeae2;
+
+  color: #ebe6dd;
+
   font-size: 14px;
+  font-weight: 700;
 }
 
 .gst-info p {
-  margin: 4px 0 0;
-  color: #77746d;
-  font-size: 10px;
+  margin: 2px 0 0;
+
+  color: #6e6b65;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 9px;
 }
 
 .gst-control {
   display: flex;
   align-items: center;
+
   gap: 10px;
 }
 
-.gst-control>strong {
-  color: #bcb8af;
-  font-size: 11px;
+.gst-control > strong {
+  color: #9e9990;
+
+  font-size: 10px;
 }
 
-
-/* ================= GST SWITCH ================= */
-
 .gst-switch {
-  width: 45px;
+  width: 43px;
   height: 25px;
 
   padding: 3px;
 
   border: 0;
-  border-radius: 20px;
 
-  background: #45433d;
+  border-radius: 30px;
 
-  cursor: pointer;
+  background: #343330;
+
+  transition:
+    background 0.2s ease;
 }
 
 .gst-switch span {
@@ -454,1193 +1128,1244 @@
 
   border-radius: 50%;
 
-  background: #aaa69d;
+  background: #e8e4dc;
 
-  transition: 0.2s ease;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.2s ease;
 }
 
 .gst-switch.active {
-  background: #9f783e;
+  background: #a77d32;
 }
 
 .gst-switch.active span {
-  transform: translateX(20px);
-  background: #ffffff;
+  transform: translateX(18px);
 }
 
-
-/* ================= GST RATE ================= */
-
 .gst-rate {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-left: 5px;
+  position: relative;
 }
 
 .gst-rate input {
-  width: 65px;
-  height: 40px;
+  width: 70px;
+  height: 38px;
 
-  border: 1px solid #9e783f;
-  border-radius: 5px;
+  padding:
+    0 25px 0 11px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  border-radius: 9px;
 
   outline: none;
 
-  background: #11110f;
-  color: #eeeae2;
+  background: #111110;
 
-  text-align: center;
+  color: #eeeae1;
 
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .gst-rate span {
-  color: #c19b5e;
-  font-size: 13px;
-  font-weight: 600;
+  position: absolute;
+
+  right: 9px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #77736c;
+
+  font-size: 11px;
 }
 
 
-/* ================= TOTAL ================= */
+/* =========================================================
+   TOTAL CARD
+   ========================================================= */
 
 .total-card {
-  padding: 25px 28px;
-
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: 40px;
 
-  background: #191917;
-  border: 1px solid #675331;
-  border-radius: 7px;
+  grid-template-columns:
+    1fr minmax(230px, 0.55fr);
+
+  gap: 30px;
+
+  align-items: center;
+
+  padding: 27px 28px;
+
+  margin-top: 18px;
+
+  border:
+    1px solid rgba(181, 138, 58, 0.20);
+
+  border-radius: var(--radius);
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(181, 138, 58, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #191817,
+      #0f0f0e
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.30);
 }
 
 .total-left {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+
+  gap: 12px;
 }
 
-.total-left>div {
+.total-left > div {
   display: flex;
-  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
 
-  color: #817d75;
-  font-size: 11px;
+  padding-bottom: 9px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.065);
+}
+
+.total-left span {
+  color: #74716a;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 10px;
 }
 
 .total-left strong {
-  color: #c7c3ba;
+  color: #d2cec5;
+
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .total-left .discount {
-  color: #bd796d;
+  color: #d27b7b;
 }
 
 .final-total {
+  min-height: 105px;
+
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
+
+  padding: 18px 20px;
+
+  border:
+    1px solid rgba(203, 168, 95, 0.35);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(181, 138, 58, 0.16),
+      rgba(181, 138, 58, 0.035)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 .final-total span {
   color: #817d75;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
   font-size: 10px;
 }
 
 .final-total strong {
-  color: #c3a064;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 28px;
-  font-weight: 500;
-  white-space: nowrap;
+  margin-top: 4px;
+
+  color: #e0bd72;
+
+  font-size: 27px;
+  line-height: 1.2;
+
+  letter-spacing: -0.5px;
+}
+
+.total-card > .print-bill {
+  grid-column: 1 / -1;
+
+  width: 100%;
 }
 
 
-/* ================= PRINT ================= */
-
-.print-bill {
-  min-width: 150px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-
-  border: 0;
-  border-radius: 5px;
-
-  background: #b18445;
-  color: #ffffff;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.print-bill:hover {
-  background: #c19655;
-}
-
-.print-bill span {
-  color: #ffffff;
-  font-size: 17px;
-}
-
-
-/* ================= FOOTER ================= */
+/* =========================================================
+   SCREEN FOOTER
+   ========================================================= */
 
 .shop-footer {
-  min-height: 70px;
+  width: min(1100px, calc(100% - 40px));
 
-  padding: 18px 5%;
+  margin: 28px auto 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
 
-  background: #181816;
-  border-top: 1px solid #302f2a;
+  flex-wrap: wrap;
 
-  color: #77746d;
-  font-size: 10px;
+  gap: 7px 18px;
+
+  color: #595650;
+
+  font-family:
+    "Noto Sans Devanagari",
+    sans-serif;
+
+  font-size: 9px;
+
+  text-align: center;
 }
 
 .shop-footer strong {
-  color: #d0ccc4;
-  font-family: Georgia, serif;
-  font-size: 12px;
-}
+  color: #89847b;
 
-.shop-footer span {
-  padding-left: 22px;
-  border-left: 1px solid #393833;
+  font-size: 10px;
 }
 
 
-/* ================= TABLET ================= */
-
-/* =====================================================
-   PRINT BILL
-   ===================================================== */
+/* =========================================================
+   PRINT INVOICE
+   Hidden on screen
+   ========================================================= */
 
 .print-invoice {
   display: none;
 }
 
-@media print {
 
-  @page {
-    size: A4;
-    margin: 5mm;
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .billing-fields {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-  }
-
-  /* IMPORTANT:
-     Parent must remain visible because
-     print-invoice is inside it.
-  */
-
-  .new-bill-page {
-
-
-    
-    display: block !important;
-    width: 100% !important;
-    min-height: auto !important;
-    background: #ffffff !important;
-    color: #222222 !important;
-
-    
-  }
-
-  /* Hide actual web bill UI */
-
-  .bill-header,
-  .bill-container,
-  .shop-footer {
-    display: none !important;
-  }
-
-  /* Show only printable invoice */
-
-  .print-invoice {
-    display: block !important;
-
-
-    width: 100% !important;
-    height: 277mm !important;
-    min-height: 277mm !important;
-    max-height: 277mm !important;
-
-    padding: 7mm 9mm;
-
-    background: #ffffff !important;
-    color: #222222 !important;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    overflow: hidden !important;
-
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-
-  /* ================= HEADER ================= */
-
-  .print-header {
-    display: flex !important;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    padding-bottom: 18px;
-  }
-
-
-  .print-shop {
-    display: flex !important;
-    align-items: center;
-    gap: 15px;
-  }
-
-
-  .print-shop img {
-    display: block !important;
-    width: 110px !important;
-    height: 110px !important;
-    object-fit: contain;
-  }
-
-
-  .print-shop h1 {
-    margin: 0;
-
-    color: #1e1e1e !important;
-
-    font-family: Georgia, serif;
-
-    font-size: 28px;
-    font-weight: 500;
-  }
-
-
-  .print-shop p {
-    margin: 4px 0;
-
-    color: #a67835 !important;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 3px;
-  }
-
-
-  .print-shop span {
-    color: #777777 !important;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-  }
-
-
-  /* ================= BILL INFO ================= */
-
-  .print-bill-info {
-    min-width: 180px;
-
-    text-align: right;
-  }
-
-
-  .print-bill-info h2 {
-    display: inline-block;
-
-    margin: 0 0 12px;
-
-    padding: 7px 14px;
-
-    background: #a67835 !important;
-
-    color: #ffffff !important;
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-  }
-
-
-  .print-bill-info div {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-bottom: 6px;
-
-    font-size: 10px;
-  }
-
-
-  .print-bill-info span {
-    color: #777777 !important;
-  }
-
-
-  .print-bill-info strong {
-    color: #222222 !important;
-  }
-
-
-  /* ================= GOLD LINE ================= */
-
-  .print-line {
+  .billing-fields .print-bill {
     width: 100%;
-    height: 1px;
-
-    margin-bottom: 20px;
-
-    background: #b58a4d !important;
   }
 
-
-  /* ================= CUSTOMER ================= */
-
-  .print-info-grid {
-    display: grid !important;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 30px;
-
-    margin-bottom: 25px;
-  }
-
-
-  .print-info-box {
-    padding: 15px 18px;
-
-    background: #faf9f6 !important;
-
-    border-left: 3px solid #b58a4d !important;
-  }
-
-
-  .print-info-box h3 {
-    margin: 0 0 9px;
-
-    color: #a67835 !important;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
-  }
-
-
-  .print-info-box strong {
-    display: block;
-
-    color: #222222 !important;
-
-    font-size: 14px;
-  }
-
-
-  .print-info-box p {
-    margin: 5px 0 0;
-
-    color: #666666 !important;
-
-    font-size: 10px;
-  }
-
-
-  /* ================= ITEM TITLE ================= */
-
-  .print-section-title {
-    padding: 9px 12px;
-
-    background: #f1ede5 !important;
-
-    border-top: 1px solid #d7c29f;
-    border-bottom: 1px solid #d7c29f;
-
-    color: #5c482b !important;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-  }
-
-
-  /* ================= ITEM ================= */
-
-  .print-item-box {
-    margin-bottom: 20px;
-
-    border: 1px solid #dcd6cc;
-
-    border-top: 0;
-  }
-
-
-  .print-item-main {
-    display: flex !important;
-
-    align-items: center;
-
-    gap: 14px;
-
-    padding: 16px;
-  }
-
-
-  .print-item-number {
-    width: 34px;
-    height: 34px;
-
-    display: flex !important;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #c49a5b;
-
-    border-radius: 50%;
-
-    color: #a67835 !important;
-
-    font-family: Georgia, serif;
-
-    font-size: 10px;
-  }
-
-
-  .print-item-main h3 {
-    margin: 0;
-
-    color: #222222 !important;
-
-    font-size: 16px;
-  }
-
-
-  .print-item-main p {
-    margin: 4px 0 0;
-
-    color: #a67835 !important;
-
-    font-size: 10px;
-
-    font-weight: 700;
-  }
-
-
-  /* ================= ITEM DETAILS ================= */
-
-  .print-item-details {
-    display: grid !important;
-    border-top: 1px solid #e3ded5;
-  }
-
-  .print-item-details.gold-details {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .print-item-details.silver-details {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .print-item-details>div {
-    padding: 12px 14px;
-
-    border-right: 1px solid #e3ded5;
-  }
-
-
-  .print-item-details>div:last-child {
-    border-right: 0;
-  }
-
-
-  .print-item-details span {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #777777 !important;
-
-    font-size: 8px;
-
-    text-transform: uppercase;
-  }
-
-
-  .print-item-details strong {
-    display: block;
-
-    color: #222222 !important;
-
-    font-size: 12px;
-  }
-
-
-  .print-item-details small {
-    display: block;
-
-    margin-top: 3px;
-
-    color: #999999 !important;
-
-    font-size: 8px;
-  }
-
-
-  /* ================= AMOUNTS ================= */
-
-  .print-amount-section {
-    width: 65%;
-
-    margin-left: auto;
-
-    border: 1px solid #ded8ce;
-  }
-
-
-  .print-amount-row {
-    display: flex !important;
-
-    justify-content: space-between;
-
-    padding: 9px 14px;
-
-    border-bottom: 1px solid #eeeae3;
-
-    font-size: 10px;
-  }
-
-
-  .print-amount-row span {
-    color: #666666 !important;
-  }
-
-
-  .print-amount-row strong {
-    color: #222222 !important;
-  }
-
-
-  .discount-row strong {
-    color: #a34f43 !important;
-  }
-
-
-  .print-subtotal {
-    display: flex !important;
-
-    justify-content: space-between;
-
-    padding: 11px 14px;
-
-    border-bottom: 1px dashed #cfc7bb;
-
-    color: #333333 !important;
-
-    font-size: 11px;
-    font-weight: 700;
-  }
-
-
-  .print-grand-total {
-    display: flex !important;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 15px;
-
-    background: #f8f3e9 !important;
-  }
-
-
-  .print-grand-total span {
-    color: #5a4528 !important;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-  }
-
-
-  .print-grand-total strong {
-    color: #a67835;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-  }
-
-
-  /* ================= FOOTER ================= */
-
-  .print-footer {
-    display: flex !important;
-
-    align-items: flex-end;
-    justify-content: space-between;
-
-    margin-top: 35px;
-
-    padding-bottom: 22px;
-  }
-
-
-  .print-footer strong {
-    color: #333333 !important;
-
-    font-size: 11px;
-  }
-
-
-  .print-footer p {
-    margin: 5px 0 0;
-
-    color: #777777 !important;
-
-    font-size: 9px;
-  }
-
-
-  .print-signature {
-    width: 170px;
-
-    text-align: center;
-  }
-
-
-  .print-signature div {
-    margin-bottom: 6px;
-
-    border-top: 1px solid #333333;
-  }
-
-
-  .print-signature span {
-    color: #666666 !important;
-
-    font-size: 9px;
-  }
-
-
-  /* ================= BOTTOM ================= */
-
-  /* ================= PREMIUM PRINT BOTTOM ================= */
-
-  .print-bottom {
-    display: flex !important;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-top: 28px;
-    padding: 12px 4px;
-
-    background: #ffffff !important;
-
-    border-top: 1px solid #b58a4d !important;
-
-    color: #777777 !important;
-
-    font-size: 8px;
-  }
-
-  .print-bottom strong {
-    color: #9d7539 !important;
-
-    font-family: Georgia, serif;
-
-    font-size: 10px;
-
-    font-weight: 600;
-  }
-
-  .print-bottom span {
-    padding-left: 20px;
-
-    border-left: 1px solid #ddd6cb;
-
-    color: #777777 !important;
-
-    font-size: 8px;
-  }
-
-
-  .print-bottom strong {
-    color: #d1a45f !important;
-
-    font-family: Georgia, serif;
-
-    font-size: 10px;
-  }
-
-
-  .print-bottom span {
-    padding-left: 20px;
-
-    border-left: 1px solid #555555;
+  .total-card {
+    grid-template-columns: 1fr;
   }
 }
 
-
-
-
-/* ================= PREMIUM PRINT OVERRIDES ================= */
-
-.print-invoice {
-  border: 2px solid #b8892d !important;
-  box-sizing: border-box !important;
-}
-
-/* Premium Header */
-.print-header {
-  padding: 18px 20px !important;
-  background: #151515 !important;
-  border: 1px solid #b8892d !important;
-  border-bottom: 3px solid #c99a45 !important;
-}
-
-.print-shop h1 {
-  color: #d4a64f !important;
-  font-weight: 700 !important;
-  letter-spacing: 2px !important;
-}
-
-.print-shop p {
-  color: #e0b45f !important;
-}
-
-.print-shop span {
-  color: #dddddd !important;
-}
-
-/* Bill number / date area */
-.print-bill-info {
-  padding: 8px 12px !important;
-}
-
-.print-bill-info span {
-  color: #c9a45d !important;
-}
-
-.print-bill-info strong {
-  color: #ffffff !important;
-}
-
-/* Gold divider */
-.print-line {
-  height: 3px !important;
-  background: #b8892d !important;
-  margin-top: 12px !important;
-}
-
-/* Customer + Shop boxes */
-.print-info-box {
-  background: #ffffff !important;
-  border: 1.5px solid #b8892d !important;
-  border-left: 5px solid #b8892d !important;
-  box-shadow: none !important;
-}
-
-.print-info-box h3 {
-  color: #8a641f !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  border-bottom: 1px solid #d6b36a !important;
-  padding-bottom: 6px !important;
-}
-
-/* Customer Name / Number */
-.customer-detail {
-  display: grid !important;
-  grid-template-columns: 48px 12px 1fr !important;
-  align-items: center !important;
-  gap: 5px !important;
-
-  margin: 7px 0 !important;
-
-  color: #222222 !important;
-  font-size: 11px !important;
-}
-
-.customer-detail strong {
-  display: inline !important;
-  color: #7d5a1d !important;
-  font-size: 10px !important;
-}
-
-.customer-detail span {
-  color: #8b6a2a !important;
-  font-weight: 700 !important;
-}
-
-.customer-detail b {
-  color: #111111 !important;
-  font-size: 11px !important;
-}
-
-/* Section title */
-.print-section-title {
-  background: #171717 !important;
-  color: #d7aa52 !important;
-
-  border: 1px solid #b8892d !important;
-
-  font-weight: 800 !important;
-  letter-spacing: 2px !important;
-}
-
-/* Jewellery box */
-.print-item-box {
-  border: 1.5px solid #b8892d !important;
-  border-top: 0 !important;
-}
-
-.print-item-main {
-  background: #faf7f0 !important;
-}
-
-.print-item-number {
-  border: 2px solid #b8892d !important;
-  color: #8a641f !important;
-  font-weight: 800 !important;
-}
-
-.print-item-main h3 {
-  color: #171717 !important;
-  font-weight: 800 !important;
-}
-
-.print-item-main p {
-  color: #8a641f !important;
-  font-weight: 800 !important;
-}
-
-/* Item details */
-.print-item-details {
-  border-top: 1px solid #c9a45d !important;
-}
-
-.print-item-details>div {
-  border-right: 1px solid #d4c09a !important;
-}
-
-.print-item-details span {
-  color: #806329 !important;
-  font-weight: 700 !important;
-}
-
-.print-item-details strong {
-  color: #111111 !important;
-  font-weight: 800 !important;
-}
-
-/* Amount section */
-.print-amount-section {
-  border: 1.5px solid #b8892d !important;
-}
-
-.print-amount-row {
-  border-bottom: 1px solid #ddd0b5 !important;
-}
-
-.print-amount-row span {
-  color: #4b4b4b !important;
-}
-
-.print-amount-row strong {
-  color: #111111 !important;
-  font-weight: 700 !important;
-}
-
-.print-subtotal {
-  color: #171717 !important;
-  border-bottom: 1px solid #b8892d !important;
-}
-
-/* FINAL TOTAL */
-.print-grand-total {
-  background: #171717 !important;
-  border-top: 3px solid #c99a45 !important;
-  padding: 17px !important;
-}
-
-.print-grand-total span {
-  color: #e0b45f !important;
-  font-weight: 800 !important;
-}
-
-.print-grand-total strong {
-  color: #f0c66b !important;
-  font-size: 25px !important;
-  font-weight: 800 !important;
-}
-
-/* Footer */
-.print-footer {
-  border-top: 1px solid #b8892d !important;
-}
-
-.print-footer strong {
-  color: #222222 !important;
-  font-weight: 800 !important;
-}
-
-.print-signature div {
-  border-top: 2px solid #333333 !important;
-}
-
-/* Bottom strip */
-.print-bottom {
-  background: #111111 !important;
-  border-top: 3px solid #b8892d !important;
-  color: #dddddd !important;
-}
-
-.print-bottom strong {
-  color: #d9aa4d !important;
-  font-weight: 800 !important;
-}
-
-
-
-/* ================= MOBILE ================= */
 
 @media (max-width: 700px) {
 
-  .bill-header {
-    min-height: 75px;
-    padding: 10px 16px;
-    grid-template-columns: auto 1fr auto;
-    gap: 10px;
+  .sales-header {
+    height: 70px;
+
+    padding: 0 18px;
   }
 
-  .shop-brand img {
-    width: 43px;
-    height: 43px;
-  }
-
-  .shop-brand h1 {
-    font-size: 17px;
-  }
-
-  .shop-brand p {
-    font-size: 6px;
-  }
-
-  .back-btn {
-    font-size: 0;
-  }
-
-  .back-btn::first-letter {
-    font-size: 20px;
-  }
-
-  .bill-number span {
-    display: none;
-  }
-
-  .bill-number strong {
-    font-size: 9px;
+  .sales-back {
+    padding: 0 12px;
   }
 
   .bill-container {
-    width: calc(100% - 28px);
-    padding: 32px 0 45px;
+    width: calc(100% - 24px);
+
+    margin-top: 25px;
   }
 
   .page-heading {
     align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
+
+    gap: 15px;
   }
 
   .page-heading h2 {
-    font-size: 32px;
+    font-size: 24px;
+  }
+
+  .section-card {
+    padding: 20px 17px;
+  }
+
+  .two-fields,
+  .metal-selection,
+  .selection-area {
+    grid-template-columns: 1fr;
+  }
+
+  .billing-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .added-item-row {
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      35px;
+
+    gap: 10px;
+  }
+
+  .added-item-row > div:nth-child(2) {
+    display: none;
+  }
+
+  .added-item-row > div:nth-child(3) {
+    align-items: flex-end;
+  }
+
+  .gst-card {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .gst-control {
+    width: 100%;
+  }
+
+  .total-card {
+    padding: 21px 18px;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  .sales-brand strong {
+    display: none;
+  }
+
+  .sales-brand span {
+    font-size: 15px;
+  }
+
+  .page-heading {
+    flex-direction: column;
   }
 
   .bill-date {
     align-items: flex-start;
   }
 
-  .section-card {
-    padding: 20px;
+  .section-heading h3 {
+    font-size: 15px;
   }
 
-  .two-fields,
-  .selection-area,
-  .metal-selection,
-  .billing-fields {
-    grid-template-columns: 1fr;
-  }
-
-  .gst-card {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .total-card {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .print-bill {
-    width: 100%;
-  }
-
-  .shop-footer {
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .shop-footer span {
-    padding-left: 0;
-    border-left: 0;
+  .added-item-row {
+    padding: 9px 11px;
   }
 }
 
+
 /* =========================================================
-   FINAL LABEL PRINT FIX
-   - Prints ONLY .print-invoice
-   - Hides navbar / full web page
-   - Forces exactly ONE A4 page
-   - Keeps the existing application logic untouched
+   =========================================================
+   A4 PRINT
+   =========================================================
    ========================================================= */
 
 @media print {
 
+  /* -------------------------------------------------------
+     A4 PAGE
+     ------------------------------------------------------- */
+
   @page {
     size: A4 portrait;
-    margin: 0 !important;
+
+    margin: 8mm;
   }
+
+
+  /* -------------------------------------------------------
+     RESET
+     ------------------------------------------------------- */
 
   html,
   body {
-    width: 210mm !important;
-    height: 297mm !important;
+    width: 100% !important;
+    min-height: 0 !important;
+
     margin: 0 !important;
     padding: 0 !important;
-    overflow: hidden !important;
-    background: #ffffff !important;
+
+    background: #fff !important;
+
+    color: #111 !important;
+
+    font-family:
+      "Noto Sans Devanagari",
+      "DM Sans",
+      Arial,
+      sans-serif;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  /* Hide the complete application while printing */
-  body * {
-    visibility: hidden !important;
+
+  body {
+    overflow: visible !important;
   }
 
-  /* Show ONLY the printable label/invoice */
-  .print-invoice,
-  .print-invoice * {
-    visibility: visible !important;
-  }
+
+  /* -------------------------------------------------------
+     HIDE COMPLETE SCREEN APP
+     ------------------------------------------------------- */
 
   .new-bill-page {
-    position: static !important;
-    width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
+    min-height: 0 !important;
+
+    width: 100% !important;
+
     margin: 0 !important;
     padding: 0 !important;
-    overflow: hidden !important;
-    background: #ffffff !important;
+
+    background: #fff !important;
   }
 
-  .print-invoice {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-
-    width: 210mm !important;
-    height: 297mm !important;
-    min-width: 210mm !important;
-    min-height: 297mm !important;
-    max-width: 210mm !important;
-    max-height: 297mm !important;
-
-    margin: 0 !important;
-    padding: 7mm 9mm !important;
-
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-
-    background: #ffffff !important;
-    color: #222222 !important;
-
-    /* Never create a second printed page */
-    page-break-before: avoid !important;
-    page-break-after: avoid !important;
-    break-before: avoid !important;
-    break-after: avoid !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* Prevent internal sections from forcing another page */
-  .print-header,
-  .print-line,
-  .print-info-grid,
-  .print-info-box,
-  .print-section-title,
-  .print-item-box,
-  .print-item-main,
-  .print-item-details,
-  .print-amount-section,
-  .print-amount-row,
-  .print-subtotal,
-  .print-grand-total,
-  .print-footer,
-  .print-bottom {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  /* Absolutely no print output from the navigation/web UI */
-  .bill-header,
   .sales-header,
   .bill-container,
-  .shop-footer,
-  nav,
-  header:not(.print-header),
-  footer:not(.print-footer) {
+  .shop-footer {
     display: none !important;
-    visibility: hidden !important;
+  }
+
+
+  /* -------------------------------------------------------
+     PRINT ONLY BILL
+     ------------------------------------------------------- */
+
+  .print-invoice {
+    display: block !important;
+
+    width: 100% !important;
+
+    max-width: 194mm !important;
+
+    margin: 0 auto !important;
+
+    padding: 0 !important;
+
+    background: #fff !important;
+
+    color: #181716 !important;
+
+    font-family:
+      "Noto Sans Devanagari",
+      "DM Sans",
+      Arial,
+      sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    overflow: visible !important;
+
+    page-break-inside: auto;
+  }
+
+
+  /* =====================================================
+     PRINT HEADER
+     ===================================================== */
+
+  .print-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 5mm;
+
+    border-bottom:
+      0.7px solid #b58a3a;
+
+    position: relative;
+
+    page-break-inside: avoid;
+  }
+
+  .print-header::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -1.5mm;
+
+    width: 23mm;
+
+    height: 0.8mm;
+
+    background: #b58a3a;
+
+    border-radius: 2px;
+  }
+
+
+  /* -----------------------------------------------------
+     SHOP BRAND
+     ----------------------------------------------------- */
+
+  .print-shop {
+    display: flex;
+
+    align-items: center;
+
+    gap: 3.5mm;
+  }
+
+  .print-shop img {
+    width: 18mm;
+    height: 18mm;
+
+    object-fit: contain;
+  }
+
+  .print-shop h1 {
+    margin: 0;
+
+    color: #171615;
+
+    font-family:
+      "Noto Sans Devanagari",
+      serif;
+
+    font-size: 22px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -0.25px;
+  }
+
+  .print-shop p {
+    margin: 1px 0 0;
+
+    color: #9b742f;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.4px;
+
+    text-transform: uppercase;
+  }
+
+  .print-shop span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #89847d;
+
+    font-size: 7px;
+  }
+
+
+  /* -----------------------------------------------------
+     BILL INFO
+     ----------------------------------------------------- */
+
+  .print-bill-info {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8mm;
+
+    text-align: right;
+  }
+
+  .print-bill-info > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+  }
+
+  .print-bill-info span {
+    color: #96918a;
+
+    font-size: 7px;
+  }
+
+  .print-bill-info strong {
+    color: #292724;
+
+    font-size: 9px;
+
+    font-weight: 700;
+  }
+
+  .print-bill-info small {
+    color: #99938b;
+
+    font-size: 6.5px;
+  }
+
+
+  /* =====================================================
+     CUSTOMER + SHOP DETAILS
+     ===================================================== */
+
+  .print-info-grid {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 4mm;
+
+    margin-top: 4mm;
+
+    page-break-inside: avoid;
+  }
+
+  .print-info-box {
+    min-height: 23mm;
+
+    padding: 3.5mm 4mm;
+
+    border:
+      0.7px solid #ddd7cc;
+
+    border-radius: 1.8mm;
+
+    background:
+      linear-gradient(
+        135deg,
+        #fffefa,
+        #faf8f3
+      );
+
+    page-break-inside: avoid;
+  }
+
+  .print-info-box h3 {
+    margin: 0 0 2.5mm;
+
+    padding-bottom: 1.5mm;
+
+    border-bottom:
+      0.5px solid #e5ded2;
+
+    color: #997431;
+
+    font-size: 7.7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+  }
+
+
+  /* -----------------------------------------------------
+     CUSTOMER
+     ----------------------------------------------------- */
+
+  .customer-detail {
+    display: grid;
+
+    grid-template-columns:
+      10mm 3mm 1fr;
+
+    gap: 1mm;
+
+    margin: 1.5mm 0;
+
+    font-size: 8px;
+  }
+
+  .customer-detail strong {
+    color: #96918a;
+
+    font-weight: 500;
+  }
+
+  .customer-detail b {
+    color: #282623;
+
+    font-weight: 600;
+  }
+
+
+  /* -----------------------------------------------------
+     SHOP
+     ----------------------------------------------------- */
+
+  .shop-details > strong {
+    display: block;
+
+    margin-bottom: 1mm;
+
+    color: #292622;
+
+    font-size: 9px;
+  }
+
+  .shop-details p {
+    margin: 1mm 0;
+
+    color: #706c66;
+
+    font-size: 7.2px;
+
+    line-height: 1.45;
+  }
+
+
+  /* =====================================================
+     ITEM SECTION TITLE
+     ===================================================== */
+
+  .print-section-title {
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 5.5mm;
+
+    margin-bottom: 2.5mm;
+
+    padding-bottom: 1.5mm;
+
+    border-bottom:
+      0.8px solid #b58a3a;
+
+    color: #8e6a2d;
+
+    font-size: 8.2px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+    page-break-after: avoid;
+  }
+
+
+  /* =====================================================
+     ITEMS LIST
+     ===================================================== */
+
+  .print-items-list {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    page-break-inside: auto;
+  }
+
+
+  /* =====================================================
+     COMPACT ITEM ROW
+     ===================================================== */
+
+  .print-item-box {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(48mm, 1.7fr)
+      minmax(60mm, 2fr)
+      minmax(27mm, 0.8fr);
+
+    align-items: center;
+
+    gap: 3mm;
+
+    min-height: 13.5mm;
+
+    padding: 2.2mm 1.5mm;
+
+    border-bottom:
+      0.55px solid #e7e2da;
+
+    background: #fff;
+
+    page-break-inside: avoid;
+
+    break-inside: avoid;
+  }
+
+  .print-item-box:first-child {
+    border-top:
+      0.55px solid #e7e2da;
+  }
+
+
+  /* -----------------------------------------------------
+     ITEM MAIN
+     ----------------------------------------------------- */
+
+  .print-item-main {
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 2.5mm;
+  }
+
+  .print-item-number {
+    width: 6.5mm;
+    height: 6.5mm;
+
+    flex: 0 0 6.5mm;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+      0.5px solid #dec99c;
+
+    border-radius: 50%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #f3e7cf,
+        #fbf7ed
+      );
+
+    color: #8d6828;
+
+    font-size: 6.5px;
+
+    font-weight: 700;
+  }
+
+  .print-item-main > div:last-child {
+    min-width: 0;
+  }
+
+  .print-item-main h3 {
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #252321;
+
+    font-size: 8.2px;
+
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .print-item-main p {
+    margin: 0.5mm 0 0;
+
+    color: #8b867f;
+
+    font-size: 6.6px;
+  }
+
+
+  /* =====================================================
+     ITEM DETAILS
+     ===================================================== */
+
+  .print-item-details {
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 2mm;
+
+    padding: 1.2mm 2mm;
+
+    border-left:
+      0.5px solid #eeeae3;
+
+    border-right:
+      0.5px solid #eeeae3;
+  }
+
+  .print-item-details > div {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5mm;
+  }
+
+  .print-item-details span {
+    color: #9a958d;
+
+    font-size: 6px;
+  }
+
+  .print-item-details strong {
+    overflow: hidden;
+
+    color: #34312e;
+
+    font-size: 7.3px;
+
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+  }
+
+  .print-item-details small {
+    color: #aaa49c;
+
+    font-size: 5.2px;
+
+    white-space: nowrap;
+  }
+
+
+  /* =====================================================
+     ITEM AMOUNT
+     ===================================================== */
+
+  .print-item-line-total {
+    min-width: 0;
+
+    display: flex !important;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 0.5mm;
+
+    text-align: right;
+  }
+
+  .print-item-line-total span {
+    color: #99938a;
+
+    font-size: 5.8px;
+  }
+
+  .print-item-line-total strong {
+    color: #876327;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+  }
+
+
+  /* =====================================================
+     AMOUNT SUMMARY
+     ===================================================== */
+
+  .print-amount-section {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    max-width: 78mm;
+
+    margin-top: 4.5mm;
+
+    margin-left: auto;
+
+    page-break-inside: avoid;
+  }
+
+  .print-amount-row,
+  .print-subtotal,
+  .print-grand-total {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 5mm;
+
+    min-height: 6.8mm;
+
+    border-bottom:
+      0.5px solid #e8e3da;
+  }
+
+  .print-amount-row span,
+  .print-subtotal span {
+    color: #77726b;
+
+    font-size: 7.5px;
+  }
+
+  .print-amount-row strong,
+  .print-subtotal strong {
+    color: #302d29;
+
+    font-size: 8px;
+
+    font-weight: 600;
+  }
+
+  .discount-row span,
+  .discount-row strong {
+    color: #a64c4c;
+  }
+
+  .print-subtotal {
+    margin-top: 1.5mm;
+
+    padding: 1.5mm 0;
+
+    border-bottom:
+      0.7px solid #cfc5b5;
+  }
+
+  .print-subtotal span,
+  .print-subtotal strong {
+    color: #25221f;
+
+    font-size: 8px;
+
+    font-weight: 700;
+  }
+
+
+  /* =====================================================
+     GRAND TOTAL
+     ===================================================== */
+
+  .print-grand-total {
+    min-height: 12mm;
+
+    margin-top: 2mm;
+
+    padding: 2mm 3.5mm;
+
+    border:
+      0.8px solid #b58a3a;
+
+    border-radius: 1.5mm;
+
+    background:
+      linear-gradient(
+        135deg,
+        #fbf5e8,
+        #fffdf8
+      );
+  }
+
+  .print-grand-total span {
+    color: #795a25;
+
+    font-size: 8px;
+
+    font-weight: 700;
+  }
+
+  .print-grand-total strong {
+    color: #76551c;
+
+    font-size: 13.5px;
+
+    font-weight: 700;
+  }
+
+
+  /* =====================================================
+     PRINT FOOTER
+     ===================================================== */
+
+  .print-footer {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 8mm;
+
+    margin-top: 6.5mm;
+
+    padding-top: 3.5mm;
+
+    border-top:
+      0.6px solid #ddd6ca;
+
+    page-break-inside: avoid;
+  }
+
+  .print-footer > div:first-child {
+    min-width: 0;
+  }
+
+  .print-footer strong {
+    display: block;
+
+    margin-bottom: 1mm;
+
+    color: #57514a;
+
+    font-size: 7.3px;
+  }
+
+  .print-footer p {
+    margin: 0;
+
+    color: #99928a;
+
+    font-size: 6.3px;
+
+    line-height: 1.5;
+  }
+
+
+  /* =====================================================
+     SIGNATURE
+     ===================================================== */
+
+  .print-signature {
+    width: 36mm;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 1mm;
+  }
+
+  .print-signature div {
+    width: 100%;
+
+    height: 8mm;
+
+    border-bottom:
+      0.6px solid #77716a;
+  }
+
+  .print-signature span {
+    color: #89827a;
+
+    font-size: 6.2px;
+  }
+
+
+  /* =====================================================
+     BOTTOM SHOP STRIP
+     ===================================================== */
+
+  .print-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 2mm 5mm;
+
+    margin-top: 3.5mm;
+
+    padding-top: 2.3mm;
+
+    border-top:
+      0.5px solid #e6e0d7;
+
+    color: #9a938a;
+
+    text-align: center;
+
+    font-size: 5.8px;
+
+    page-break-inside: avoid;
+  }
+
+  .print-bottom strong {
+    color: #686158;
+
+    font-size: 6.2px;
+  }
+
+
+  /* =====================================================
+     PRINT SAFETY
+     ===================================================== */
+
+  .print-info-box,
+  .print-item-box,
+  .print-amount-section,
+  .print-footer,
+  .print-bottom {
+    -webkit-column-break-inside: avoid;
+
+    page-break-inside: avoid;
+
+    break-inside: avoid;
+  }
+
+  .print-invoice * {
+    overflow: visible;
+  }
+
+  a[href]::after {
+    content: none !important;
   }
 }
+
+
