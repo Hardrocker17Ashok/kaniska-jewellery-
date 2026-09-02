@@ -54,7 +54,9 @@ function NewBill() {
   ];
 
   const baseAmount =
-    (Number(weight) || 0) * (Number(rate) || 0);
+    metal === "gold"
+      ? ((Number(weight) || 0) * (Number(rate) || 0)) / 10
+      : (Number(weight) || 0) * (Number(rate) || 0);
 
   const makingAmount = Number(making) || 0;
   const offerAmount = Number(offer) || 0;
@@ -166,8 +168,7 @@ function NewBill() {
         } catch (error) {
           console.error("Bill save/print error:", error?.code, error?.message, error);
           alert(
-            `बिल डेटाबेस में सेव नहीं हो सका: ${
-              error?.code || error?.message || "Unknown error"
+            `बिल डेटाबेस में सेव नहीं हो सका: ${error?.code || error?.message || "Unknown error"
             }`
           );
         } finally {
@@ -178,8 +179,7 @@ function NewBill() {
       console.error("Bill print error:", error?.code, error?.message, error);
       setIsPrinting(false);
       alert(
-        `बिल प्रिंट नहीं हो सका: ${
-          error?.code || error?.message || "Unknown error"
+        `बिल प्रिंट नहीं हो सका: ${error?.code || error?.message || "Unknown error"
         }`
       );
     }
@@ -190,7 +190,7 @@ function NewBill() {
 
       {/* ================= HEADER ================= */}
 
-       <header className="sales-header">
+      <header className="sales-header">
 
         <div className="sales-brand">
 
@@ -356,11 +356,10 @@ function NewBill() {
 
             <button
               type="button"
-              className={`metal-card ${
-                metal === "gold"
-                  ? "active"
-                  : ""
-              }`}
+              className={`metal-card ${metal === "gold"
+                ? "active"
+                : ""
+                }`}
               onClick={() =>
                 handleMetalChange("gold")
               }
@@ -393,11 +392,10 @@ function NewBill() {
 
             <button
               type="button"
-              className={`metal-card ${
-                metal === "silver"
-                  ? "active"
-                  : ""
-              }`}
+              className={`metal-card ${metal === "silver"
+                ? "active"
+                : ""
+                }`}
               onClick={() =>
                 handleMetalChange("silver")
               }
@@ -595,8 +593,8 @@ function NewBill() {
 
                   <small>
                     {metal === "gold"
-                      ? " ग्राम"
-                      : " ग्राम / किलो"}
+                      ? " ₹ / 10 ग्राम"
+                      : " ₹ / किलो"}
                   </small>
 
                 </label>
@@ -624,8 +622,8 @@ function NewBill() {
 
                   <small>
                     {metal === "gold"
-                      ? " ₹ / ग्राम"
-                      : " ₹ / किलो"}
+                      ? "प्रति 10 ग्राम"
+                      : "प्रति किलो"}
                   </small>
 
                 </label>
@@ -729,11 +727,10 @@ function NewBill() {
 
             <button
               type="button"
-              className={`gst-switch ${
-                gstEnabled
-                  ? "active"
-                  : ""
-              }`}
+              className={`gst-switch ${gstEnabled
+                ? "active"
+                : ""
+                }`}
               onClick={() =>
                 setGstEnabled(!gstEnabled)
               }
@@ -944,7 +941,7 @@ function NewBill() {
 
           <div className="print-bill-info">
 
-    
+
 
             <div>
 
@@ -1001,12 +998,16 @@ function NewBill() {
               ग्राहक का विवरण
             </h3>
 
-            <strong>
-              {customerName || "ग्राहक"}
-            </strong>
+            <p className="customer-detail">
+              <strong>नाम</strong>
+              <span>-</span>
+              <b>{customerName || "ग्राहक"}</b>
+            </p>
 
-            <p>
-              {customerMobile || "मोबाइल नंबर"}
+            <p className="customer-detail">
+              <strong>नंबर</strong>
+              <span>-</span>
+              <b>{customerMobile || "मोबाइल नंबर"}</b>
             </p>
 
           </div>
@@ -1059,11 +1060,10 @@ function NewBill() {
               <p>
 
                 {metal === "gold"
-                  ? `सोना${
-                      carat
-                        ? ` • ${carat}`
-                        : ""
-                    }`
+                  ? `सोना${carat
+                    ? ` • ${carat}`
+                    : ""
+                  }`
                   : "चाँदी"}
 
               </p>
@@ -1073,10 +1073,12 @@ function NewBill() {
           </div>
 
 
-          <div className="print-item-details">
+          <div
+            className={`print-item-details ${metal === "gold" ? "gold-details" : "silver-details"
+              }`}
+          >
 
             <div>
-
               <span>
                 मात्रा
               </span>
@@ -1084,12 +1086,9 @@ function NewBill() {
               <strong>
                 {quantity}
               </strong>
-
             </div>
 
-
             <div>
-
               <span>
                 वजन
               </span>
@@ -1097,12 +1096,9 @@ function NewBill() {
               <strong>
                 {weight || "0"} ग्राम
               </strong>
-
             </div>
 
-
             <div>
-
               <span>
                 दर
               </span>
@@ -1119,14 +1115,10 @@ function NewBill() {
                   ? "प्रति ग्राम"
                   : "प्रति किलो"}
               </small>
-
             </div>
 
-
             {metal === "gold" && (
-
               <div>
-
                 <span>
                   कैरेट
                 </span>
@@ -1134,9 +1126,7 @@ function NewBill() {
                 <strong>
                   {carat || "-"}
                 </strong>
-
               </div>
-
             )}
 
           </div>
@@ -1317,7 +1307,7 @@ function NewBill() {
           </strong>
 
           <span>
-             राधाकृष्णपुरा, जयपुर, राजस्थान
+            राधाकृष्णपुरा, जयपुर, राजस्थान
           </span>
 
           <span>

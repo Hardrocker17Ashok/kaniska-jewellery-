@@ -951,13 +951,17 @@
   /* ================= ITEM DETAILS ================= */
 
   .print-item-details {
-    display: grid !important;
+  display: grid !important;
+  border-top: 1px solid #e3ded5;
+}
 
-    grid-template-columns: repeat(4, 1fr);
+.print-item-details.gold-details {
+  grid-template-columns: repeat(4, 1fr);
+}
 
-    border-top: 1px solid #e3ded5;
-  }
-
+.print-item-details.silver-details {
+  grid-template-columns: repeat(3, 1fr);
+}
 
   .print-item-details > div {
     padding: 12px 14px;
@@ -1202,6 +1206,227 @@
     border-left: 1px solid #555555;
   }
 }
+
+
+
+
+/* ================= PREMIUM PRINT OVERRIDES ================= */
+
+.print-invoice {
+  border: 2px solid #b8892d !important;
+  box-sizing: border-box !important;
+}
+
+/* Premium Header */
+.print-header {
+  padding: 18px 20px !important;
+  background: #151515 !important;
+  border: 1px solid #b8892d !important;
+  border-bottom: 3px solid #c99a45 !important;
+}
+
+.print-shop h1 {
+  color: #d4a64f !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+}
+
+.print-shop p {
+  color: #e0b45f !important;
+}
+
+.print-shop span {
+  color: #dddddd !important;
+}
+
+/* Bill number / date area */
+.print-bill-info {
+  padding: 8px 12px !important;
+}
+
+.print-bill-info span {
+  color: #c9a45d !important;
+}
+
+.print-bill-info strong {
+  color: #ffffff !important;
+}
+
+/* Gold divider */
+.print-line {
+  height: 3px !important;
+  background: #b8892d !important;
+  margin-top: 12px !important;
+}
+
+/* Customer + Shop boxes */
+.print-info-box {
+  background: #ffffff !important;
+  border: 1.5px solid #b8892d !important;
+  border-left: 5px solid #b8892d !important;
+  box-shadow: none !important;
+}
+
+.print-info-box h3 {
+  color: #8a641f !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  border-bottom: 1px solid #d6b36a !important;
+  padding-bottom: 6px !important;
+}
+
+/* Customer Name / Number */
+.customer-detail {
+  display: grid !important;
+  grid-template-columns: 48px 12px 1fr !important;
+  align-items: center !important;
+  gap: 5px !important;
+
+  margin: 7px 0 !important;
+
+  color: #222222 !important;
+  font-size: 11px !important;
+}
+
+.customer-detail strong {
+  display: inline !important;
+  color: #7d5a1d !important;
+  font-size: 10px !important;
+}
+
+.customer-detail span {
+  color: #8b6a2a !important;
+  font-weight: 700 !important;
+}
+
+.customer-detail b {
+  color: #111111 !important;
+  font-size: 11px !important;
+}
+
+/* Section title */
+.print-section-title {
+  background: #171717 !important;
+  color: #d7aa52 !important;
+
+  border: 1px solid #b8892d !important;
+
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+}
+
+/* Jewellery box */
+.print-item-box {
+  border: 1.5px solid #b8892d !important;
+  border-top: 0 !important;
+}
+
+.print-item-main {
+  background: #faf7f0 !important;
+}
+
+.print-item-number {
+  border: 2px solid #b8892d !important;
+  color: #8a641f !important;
+  font-weight: 800 !important;
+}
+
+.print-item-main h3 {
+  color: #171717 !important;
+  font-weight: 800 !important;
+}
+
+.print-item-main p {
+  color: #8a641f !important;
+  font-weight: 800 !important;
+}
+
+/* Item details */
+.print-item-details {
+  border-top: 1px solid #c9a45d !important;
+}
+
+.print-item-details > div {
+  border-right: 1px solid #d4c09a !important;
+}
+
+.print-item-details span {
+  color: #806329 !important;
+  font-weight: 700 !important;
+}
+
+.print-item-details strong {
+  color: #111111 !important;
+  font-weight: 800 !important;
+}
+
+/* Amount section */
+.print-amount-section {
+  border: 1.5px solid #b8892d !important;
+}
+
+.print-amount-row {
+  border-bottom: 1px solid #ddd0b5 !important;
+}
+
+.print-amount-row span {
+  color: #4b4b4b !important;
+}
+
+.print-amount-row strong {
+  color: #111111 !important;
+  font-weight: 700 !important;
+}
+
+.print-subtotal {
+  color: #171717 !important;
+  border-bottom: 1px solid #b8892d !important;
+}
+
+/* FINAL TOTAL */
+.print-grand-total {
+  background: #171717 !important;
+  border-top: 3px solid #c99a45 !important;
+  padding: 17px !important;
+}
+
+.print-grand-total span {
+  color: #e0b45f !important;
+  font-weight: 800 !important;
+}
+
+.print-grand-total strong {
+  color: #f0c66b !important;
+  font-size: 25px !important;
+  font-weight: 800 !important;
+}
+
+/* Footer */
+.print-footer {
+  border-top: 1px solid #b8892d !important;
+}
+
+.print-footer strong {
+  color: #222222 !important;
+  font-weight: 800 !important;
+}
+
+.print-signature div {
+  border-top: 2px solid #333333 !important;
+}
+
+/* Bottom strip */
+.print-bottom {
+  background: #111111 !important;
+  border-top: 3px solid #b8892d !important;
+  color: #dddddd !important;
+}
+
+.print-bottom strong {
+  color: #d9aa4d !important;
+  font-weight: 800 !important;
+}
+
 
 
 /* ================= MOBILE ================= */
