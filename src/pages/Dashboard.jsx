@@ -19,8 +19,92 @@ function Dashboard() {
   const [todaySales, setTodaySales] = useState(0);
   const [monthlySales, setMonthlySales] = useState(0);
 
+  const [metalRates, setMetalRates] = useState({
+    gold24: null,
+    gold22: null,
+    gold18: null,
+    silver999: null,
+  });
+
+  const [ratesUpdatedAt, setRatesUpdatedAt] = useState(null);
+  const [ratesLoading, setRatesLoading] = useState(true);
+  const [ratesError, setRatesError] = useState("");
+
 
   // ================= FETCH DASHBOARD DATA =================
+
+
+
+  const fetchMetalRates = async () => {
+    try {
+      setRatesLoading(true);
+      setRatesError("");
+
+      const [goldRes, silverRes] = await Promise.all([
+        fetch("https://snapdata.dev/api/v1/gold/in/latest.json"),
+        fetch("https://snapdata.dev/api/v1/silver/in/latest.json"),
+      ]);
+
+      if (!goldRes.ok || !silverRes.ok) {
+        throw new Error("Rate fetch failed");
+      }
+
+      const goldData = await goldRes.json();
+      const silverData = await silverRes.json();
+      setRatesUpdatedAt(
+        goldData.generated_at || silverData.generated_at || null
+      );
+
+      const goldRates = {};
+
+      goldData.observations?.forEach((item) => {
+        if (item.instrument_id === "XAU.24K.INR.G") {
+          goldRates.gold24 = item.value;
+        }
+
+        if (item.instrument_id === "XAU.22K.INR.G") {
+          goldRates.gold22 = item.value;
+        }
+
+        if (item.instrument_id === "XAU.18K.INR.G") {
+          goldRates.gold18 = item.value;
+        }
+      });
+
+      const silverRate = silverData.observations?.find(
+        (item) => item.instrument_id === "XAG.INR.KG"
+      );
+
+      setMetalRates({
+        gold24: goldRates.gold24,
+        gold22: goldRates.gold22,
+        gold18: goldRates.gold18,
+        silver999: silverRate?.value ?? null,
+      });
+    } catch (error) {
+      console.error("Metal rates error:", error);
+      setRatesError("आज का भाव प्राप्त नहीं हो सका");
+    } finally {
+      setRatesLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadRates = async () => {
+      if (cancelled) return;
+      await fetchMetalRates();
+    };
+
+    loadRates();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -170,26 +254,26 @@ function Dashboard() {
 
   // ================= DATE =================
 
-  const formatTime = (timestamp) => {
-    if (!timestamp) return "";
+  // const formatTime = (timestamp) => {
+  //   if (!timestamp) return "";
 
-    try {
-      const date = timestamp.toDate
-        ? timestamp.toDate()
-        : new Date(timestamp);
+  //   try {
+  //     const date = timestamp.toDate
+  //       ? timestamp.toDate()
+  //       : new Date(timestamp);
 
-      return date.toLocaleTimeString(
-        "hi-IN",
-        {
-          hour: "2-digit",
-          minute: "2-digit",
-        }
-      );
+  //     return date.toLocaleTimeString(
+  //       "hi-IN",
+  //       {
+  //         hour: "2-digit",
+  //         minute: "2-digit",
+  //       }
+  //     );
 
-    } catch {
-      return "";
-    }
-  };
+  //   } catch {
+  //     return "";
+  //   }
+  // };
 
 
   // ================= PRICE FORMAT =================
@@ -351,6 +435,72 @@ function Dashboard() {
           </div>
 
         </section>
+
+
+
+        <div className="metal-rates-card">
+          <div className="metal-rates-header">
+            <div>
+              <span className="metal-rates-label">आज का बाजार भाव</span>
+
+              <h3>सोना एवं चाँदी</h3>
+
+              {ratesUpdatedAt && (
+                <small className="rates-last-update">
+                  अंतिम अपडेट:{" "}
+                  {new Date(ratesUpdatedAt).toLocaleString("hi-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </small>
+              )}
+            </div>
+
+            <span className="metal-rates-live">● आज का भाव</span>
+          </div>
+
+          {ratesLoading ? (
+            <div className="rates-loading">भाव लोड हो रहा है...</div>
+          ) : ratesError ? (
+            <div className="rates-error">{ratesError}</div>
+          ) : (
+            <div className="metal-rates-grid">
+              <div className="metal-rate-item">
+                <span>सोना 24K</span>
+                <strong>
+                  ₹ {metalRates.gold24 ? Number(metalRates.gold24 * 10).toLocaleString("en-IN") : "--"}
+                </strong>
+                <small>प्रति 10 ग्राम</small>
+              </div>
+
+              <div className="metal-rate-item">
+                <span>सोना 22K</span>
+                <strong>
+                  ₹ {metalRates.gold22 ? Number(metalRates.gold22 * 10).toLocaleString("en-IN") : "--"}
+                </strong>
+                <small>प्रति 10 ग्राम</small>
+              </div>
+
+              <div className="metal-rate-item">
+                <span>सोना 18K</span>
+                <strong>
+                  ₹ {metalRates.gold18 ? Number(metalRates.gold18 * 10).toLocaleString("en-IN") : "--"}
+                </strong>
+                <small>प्रति 10 ग्राम</small>
+              </div>
+
+              <div className="metal-rate-item">
+                <span>चाँदी 999</span>
+                <strong>
+                  ₹ {metalRates.silver999 ? Number(metalRates.silver999).toLocaleString("en-IN") : "--"}
+                </strong>
+                <small>प्रति किलो</small>
+              </div>
+            </div>
+          )}
+        </div>
 
 
         {/* ================= QUICK ACTIONS ================= */}

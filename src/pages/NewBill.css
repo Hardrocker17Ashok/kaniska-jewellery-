@@ -2369,3 +2369,13 @@ button {
 }
 
 
+/* ================= GSTIN - BILL INFO ================= */
+.shop-gstin {
+  margin-top: 6px;
+}
+
+.shop-gstin span {
+  color: #c5a05b;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
