@@ -2379,3 +2379,205 @@ button {
   font-weight: 700;
   letter-spacing: 0.4px;
 }
+
+/* =========================================================
+   PRINT TEXT VISIBILITY — LARGE + B&W PRINTER SAFE
+   Screen UI and billing logic are unchanged.
+   ========================================================= */
+
+@media print {
+
+  .print-invoice {
+    color: #111 !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    font-weight: 600 !important;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header secondary text */
+  .print-invoice .print-shop p {
+    color: #4a3512 !important;
+    font-size: 9px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .print-shop span {
+    color: #30302d !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-bill-info span {
+    color: #3f3c37 !important;
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-bill-info small {
+    color: #3f3c37 !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Customer + shop details */
+  .print-invoice .print-info-box h3 {
+    color: #684914 !important;
+    font-size: 9.5px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .customer-detail {
+    font-size: 9.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .print-invoice .customer-detail strong {
+    color: #45413b !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .customer-detail b {
+    color: #171614 !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .shop-details > strong {
+    color: #171614 !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .shop-details p {
+    color: #3f3c37 !important;
+    font-size: 9px !important;
+    line-height: 1.55 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Items section */
+  .print-invoice .print-section-title {
+    color: #5d4010 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.5px;
+  }
+
+  .print-invoice .print-item-main h3 {
+    color: #111 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .print-item-main p {
+    color: #3f3c37 !important;
+    font-size: 8.5px !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-item-number {
+    color: #5a3f12 !important;
+    font-size: 8px !important;
+    font-weight: 900 !important;
+  }
+
+  /* Metal/item detail labels and values */
+  .print-invoice .print-item-details span {
+    color: #4a4640 !important;
+    font-size: 7.5px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .print-item-details strong {
+    color: #161513 !important;
+    font-size: 8.5px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .print-item-details small {
+    color: #4d4942 !important;
+    font-size: 7px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-item-line-total span {
+    color: #45413b !important;
+    font-size: 7.5px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .print-item-line-total strong {
+    color: #563b0d !important;
+    font-size: 10.5px !important;
+    font-weight: 900 !important;
+  }
+
+  /* Amount summary */
+  .print-invoice .print-amount-row span,
+  .print-invoice .print-subtotal span {
+    color: #3f3b35 !important;
+    font-size: 9px !important;
+    font-weight: 800 !important;
+  }
+
+  .print-invoice .print-amount-row strong,
+  .print-invoice .print-subtotal strong {
+    color: #151412 !important;
+    font-size: 9.5px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .discount-row span,
+  .print-invoice .discount-row strong {
+    color: #713737 !important;
+  }
+
+  /* Grand total remains strongest */
+  .print-invoice .print-grand-total span {
+    color: #50380d !important;
+    font-size: 9.5px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .print-grand-total strong {
+    color: #4a3208 !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+  }
+
+  /* Footer / terms */
+  .print-invoice .print-footer strong {
+    color: #25221e !important;
+    font-size: 9px !important;
+    font-weight: 900 !important;
+  }
+
+  .print-invoice .print-footer p {
+    color: #41403b !important;
+    font-size: 8px !important;
+    line-height: 1.55 !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-signature span {
+    color: #3f3b35 !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-bottom {
+    color: #3f3b35 !important;
+    font-size: 7.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .print-invoice .print-bottom strong {
+    color: #22201d !important;
+    font-size: 8px !important;
+    font-weight: 900 !important;
+  }
+}
