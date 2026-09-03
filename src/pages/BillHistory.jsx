@@ -1260,11 +1260,11 @@ function BillHistory() {
 
                 <small>
                   +91 9950815261,
-                  9414305261
+                  +91 9414305261
                 </small>
 
                 <small>
-                  GSTIN: 08XXXXXXXXXXXXXX
+                  GSTIN: 08HARPS7684N1Z6
                 </small>
 
               </div>
